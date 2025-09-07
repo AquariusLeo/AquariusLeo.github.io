@@ -19,26 +19,22 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
+    <meta name="description" content="正则表达式RegularExpression一种字符串处理的表示方式 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]） [:alpha:]：英文大小写字符 [:lower:]：英文小写字符，即a~z [:upper:]：英文大写字符，即A~Z [:digit:]：数字，即0~9 [:blank:]：空格键与Tab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的Git学习笔记">
-<meta property="og:url" content="https://aquariusleo.github.io/posts/3059.html">
+<meta property="og:title" content="Linux笔记-正则表达式">
+<meta property="og:url" content="https://aquariusleo.github.io/posts/789.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
+<meta property="og:description" content="正则表达式RegularExpression一种字符串处理的表示方式 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]） [:alpha:]：英文大小写字符 [:lower:]：英文小写字符，即a~z [:upper:]：英文大写字符，即A~Z [:digit:]：数字，即0~9 [:blank:]：空格键与Tab">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2015/02/1352126739_7909.jpg">
-<meta property="og:image" content="https://pub-68498345ab4b4950815fe9ca6cfa90be.r2.dev/picgo/20250105214320883.png">
-<meta property="article:published_time" content="2025-01-04T17:19:51.233Z">
-<meta property="article:modified_time" content="2025-01-11T16:18:26.111Z">
+<meta property="article:published_time" content="2025-09-06T16:46:30.663Z">
+<meta property="article:modified_time" content="2025-09-07T13:51:40.932Z">
 <meta property="article:author" content="AquariusLeo">
-<meta property="article:tag" content="Git">
-<meta property="article:tag" content="版本管理">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2015/02/1352126739_7909.jpg">
   
   
   
-  <title>我的Git学习笔记 - AquariusLeo&#39;s Blogs</title>
+  <title>Linux笔记-正则表达式 - AquariusLeo&#39;s Blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="我的Git学习笔记"></span>
+            <span id="subtitle" data-typed-text="Linux笔记-正则表达式"></span>
           
         </div>
 
@@ -226,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-05 01:19" pubdate>
-          2025年1月5日 凌晨
+        <time datetime="2025-09-07 00:46" pubdate>
+          2025年9月7日 凌晨
         </time>
       </span>
     
@@ -238,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          669 字
         
       </span>
     
@@ -249,7 +245,7 @@
         
         
         
-          17 分钟
+          6 分钟
         
       </span>
     
@@ -286,104 +282,59 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">我的Git学习笔记</h1>
+            <h1 id="seo-header">Linux笔记-正则表达式</h1>
             
             
               <div class="markdown-body">
                 
-                <p>参考：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
-<h2 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h2><p>Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><strong>工作区（worktree）：</strong>电脑中本地代码实际存放的目录。</li>
-<li><strong>暂存区（staged&#x2F;index）：</strong>暂时存放文件的修改的地方，一般存放在 <strong>.git</strong> 目录下的 index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。</li>
-<li><strong>版本库：</strong>工作区有一个隐藏目录 <strong>.git</strong>，这个不算工作区，而是 Git 的版本库。包含了所有的分支与版本。</li>
+                <h1 id="正则表达式RegularExpression"><a href="#正则表达式RegularExpression" class="headerlink" title="正则表达式RegularExpression"></a>正则表达式RegularExpression</h1><p>一种字符串处理的表示方式</p>
+<h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><ul>
+<li>[:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]）</li>
+<li>[:alpha:]：英文大小写字符</li>
+<li>[:lower:]：英文小写字符，即a~z</li>
+<li>[:upper:]：英文大写字符，即A~Z</li>
+<li>[:digit:]：数字，即0~9</li>
+<li>[:blank:]：空格键与Tab键</li>
+<li>[:graph:]：除了空格符（空格键与[Tab]按键）外的其他所有按键</li>
+<li>[:cntrl:]：控制按键，包括CR、LF、Tab、Del等</li>
+<li>[:print:]：代表任何可以被打印出来的字符</li>
+<li>[:punct:]：代表标点符号（punctuation symbol），亦即:”‘?!;:#$</li>
+<li>[:space:]：任何会产生空白的字符，包括空格键、[Tab]、 CR等</li>
+<li>[:xdigit:]：代表十六进制的数字类型，因此包括0<del>9、A</del>F、a~f的数字与字符</li>
 </ul>
-<p><img src="https://www.runoob.com/wp-content/uploads/2015/02/1352126739_7909.jpg" srcset="/img/loading.gif" lazyload alt="工作区与版本库"></p>
-<ul>
-<li>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage&#x2F;index），标记为 “master” 的是 master 分支所代表的目录树。</li>
-<li>当对工作区修改（或新增）的文件执行 <code>git add</code> 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</li>
-<li>当执行提交操作 <code>git commit</code> 命令时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。</li>
-<li>HEAD指针指向版本库中当前分支、当前所在的版本（或者说指向某一个分支名，如main；而分支名main也是个指针，指向某一个commit）。可以使用<code>git reset</code>改变HEAD指针指向的版本。HEAD^表示当前版本的父版本，HEAD^^表示上两个版本，以此类推。commit_id也可以用版本号的前几位表示。</li>
+<h2 id="基础RE字符"><a href="#基础RE字符" class="headerlink" title="基础RE字符"></a>基础RE字符</h2><ul>
+<li>^word：^匹配行首</li>
+<li>word$：$匹配行尾</li>
+<li>.：小数点，匹配一个任意字符</li>
+<li>*：星号，与一个RE字符搭配使用，表示前一个RE字符重复0到无穷多次（注意正则表达式与通配符不同，通配符中星号代表0到无穷多个字符，？代表任意一个字符）</li>
+<li>\：将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\\‘ 匹配 “\“，而 ‘\(‘ 则匹配 “(“。</li>
+<li>[list]：字符集合，匹配一个方括号中的字符，注意仅匹配一个</li>
+<li>[n1-n2]：字符范围，匹配两个字符之间的连续字符中的一个</li>
+<li>[^list]：反向选择，匹配不在list中的字符</li>
+<li>{n,m}：代表前一个RE字符重复n到m次，{n}表示重复n次，{n,}表示重复至少n次</li>
 </ul>
-<h2 id="创建版本库（仓库）"><a href="#创建版本库（仓库）" class="headerlink" title="创建版本库（仓库）"></a>创建版本库（仓库）</h2><p>进入某个目录后，执行<code>git init</code>命令。该目录下就会自动生成 .git文件夹，该目录变成一个Git管理的版本库。</p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
-<li><p><code>git add &lt;file&gt;</code> ：添加文件修改到暂存区</p>
-</li>
-<li><p><code>git commit -m &#39;message&#39;</code> ：提交暂存区的文件修改到版本库的当前分支。git管理的是文件的修改，add与commit操作的对象都是文件的修改。</p>
-</li>
-<li><p><code>git status</code> ：查看工作区的状态，哪些修改未提交</p>
-<h4 id="比较差异："><a href="#比较差异：" class="headerlink" title="比较差异："></a>比较差异：</h4></li>
-<li><p><code>git diff &lt;file&gt;</code> ：查看工作区与暂存区文件的差异</p>
-</li>
-<li><p><code>git diff --staged &lt;file&gt;</code> ：查看暂存区与版本库当前版本文件的差异</p>
-<h4 id="版本回退："><a href="#版本回退：" class="headerlink" title="版本回退："></a>版本回退：</h4></li>
-<li><p><code>git log</code> ：显示当前分支的版本历史，一个commit就对应了一个版本，也是分支图中的一个节点。<code>git log --graph --oneline --all</code>画出所有分支的分支图。</p>
-</li>
-<li><p><code>git reset --hard &lt;commit_id | HEAD&gt;</code> ：暂存区与工作区的文件都回退到某个版本。HEAD指针指向当前所在的版本；如果使用commit_id，HEAD指针和分支名指针也会改变（即版本库的当前版本变了）。</p>
-</li>
-<li><p><code>git reset &lt;commit_id | HEAD&gt;</code> ：（省略了–mixed）版本库与暂存区的文件回退到某个版本，工作区文件不变保留修改，变为未暂存的状态。如果使用commit_id，HEAD指针和分支名指针也会改变。（如果工作区已经和版本库一致，但上次提交的commit有错误，想要修改又不想产生新的commit，可以用此命令回退版本库，但保留工作区修改，修改工作区后重新提交）</p>
-</li>
-<li><p><code>git reflog</code> ：查看命令历史</p>
-<h4 id="撤销修改："><a href="#撤销修改：" class="headerlink" title="撤销修改："></a>撤销修改：</h4></li>
-<li><p><code>git restore &lt;file&gt;</code> ：使用暂存区的文件内容恢复工作区的文件（即丢弃工作区的修改）</p>
-</li>
-<li><p><code>git restore --staged &lt;file&gt;</code> ：使用版本库当前版本（HEAD）的内容恢复暂存区的内容（即取消暂存，工作区保持不变）</p>
-<img src="https://pub-68498345ab4b4950815fe9ca6cfa90be.r2.dev/picgo/20250105214320883.png" srcset="/img/loading.gif" lazyload alt="撤销与提交操作" style="zoom:50%;" />
-</li>
-<li><p><code>git rm &lt;file&gt;</code> ：删除一个文件，并将删除操作添加至暂存区</p>
-<h4 id="连接远程仓库："><a href="#连接远程仓库：" class="headerlink" title="连接远程仓库："></a>连接远程仓库：</h4></li>
-<li><p><code>git remote add origin git@github.com:AquariusLeo/gitlearning.git</code> ：连接GitHub上的远程仓库，origin是这个远程连接的引用的名字，可以随便改</p>
-</li>
-<li><p><code>git remote -v</code> ：查看连接的远程仓库信息</p>
-</li>
-<li><p><code>git remote show &lt;remote-name&gt;</code>：查看所有的远程连接，或查看指定的连接的信息。</p>
-</li>
-<li><p><code>git push [-u] origin main</code> ：把本地的main分支的修改推送到远程库origin中。-u：将本地的main分支关联到远程库的main分支，即追踪tracking&#x2F;upstream。之后推送修改就不需要加-u。</p>
-</li>
-<li><p><code>git pull</code> ：把远程仓库的最新commit抓取到本地的当前分支。抓取前需要建立与远程分支的追踪关系。</p>
-</li>
-<li><p><code>git branch --set-upstream-to=origin/&lt;branch-name&gt; &lt;local-branch-name&gt;</code>：将本地分支与远程分支建立追踪关系。追踪关系可以用<code>git remote show origin</code>查看。在pull或者push之前都要建立追踪关系，或者使用-u选项</p>
-</li>
-<li><p><code>git remote rm &lt;name&gt;</code> ：删除远程库连接</p>
-</li>
-<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
-<h4 id="分支管理："><a href="#分支管理：" class="headerlink" title="分支管理："></a>分支管理：</h4></li>
-<li><p><code>git branch</code> ：列出所有的已存在分支</p>
-</li>
-<li><p><code>git branch &lt;branchname&gt;</code> ：创建一个新分支，指向当前HEAD的位置。–delete：删除分支，–move：移动&#x2F;重命名分支，–copy：复制分支</p>
-</li>
-<li><p><code>git switch &lt;branchname&gt;</code> ：切换分支。-c：创建后再切换。</p>
-</li>
-<li><p><code>git merge &lt;branchname&gt;</code> ：合并branchname分支到当前分支。当Git无法自动合并分支时，就必须首先解决冲突，把Git合并失败的文件手动编辑为我们希望的内容。解决冲突后，再add、commit，合并完成。–no-ff：禁用Fast forward模式，在merge时必定生成一个commit，这样可避免删除分支后，会丢掉分支信息。</p>
-</li>
-<li><p><code>git stash</code> ：保存当前工作现场（包括工作区未add的修改和暂存区未commit的修改），之后工作区会是干净的，可以放心地创建新分支。主要用于在开发过程中临时去别的分支修复bug。</p>
-</li>
-<li><p><code>git stash list</code> ：查看所有被保存的工作现场。</p>
-</li>
-<li><p><code>git stash pop</code> ：恢复上一个保存的stash，并把它删除。</p>
-</li>
-<li><p><code>git cherry-pick &lt;commit_id&gt;</code> ：复制某个commit的修改到当前分支。常用于复制bug修复。</p>
-</li>
-<li><p><code>git rebase</code> ：（变基）把本地未push的分叉提交历史整理成直线，使得在查看历史提交的变化时更容易</p>
-<h4 id="多人协作的工作模式："><a href="#多人协作的工作模式：" class="headerlink" title="多人协作的工作模式："></a>多人协作的工作模式：</h4></li>
-<li><p>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</p>
-</li>
-<li><p>如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并；</p>
-</li>
-<li><p>如果pull合并有冲突，则解决冲突，并在本地add、commit提交；</p>
-</li>
-<li><p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</p>
-</li>
-<li><p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to=origin/&lt;branch-name&gt; &lt;local-branch-name&gt;</code>。</p>
-<h4 id="标签管理："><a href="#标签管理：" class="headerlink" title="标签管理："></a>标签管理：</h4></li>
-<li><p>标签是版本库的一个快照，唯一确定了打标签时刻的版本，其实就是指向某个commit的指针。使用标签是为了定义简明的版本号，而不是使用很长的commit_id。</p>
-</li>
-<li><p><code>git tag &lt;tagname&gt; [&lt;commit_id&gt;]</code> ：给某个commit打上标签。<code>git tag</code>会列出所有的标签，<code>git show &lt;tagname&gt;</code>查看标签信息。-d：删除标签。</p>
-</li>
+<h2 id="拓展RE字符"><a href="#拓展RE字符" class="headerlink" title="拓展RE字符"></a>拓展RE字符</h2><ul>
+<li>要使用egrep（grep -E的别名）或sed  -r，见私房菜P376</li>
+<li>+：加号，与一个RE字符搭配使用，表示前一个RE字符重复1到无穷多次</li>
+<li>?：问号，与一个RE字符搭配使用，表示前一个RE字符重复0或1次</li>
+<li>|：或，如 gd|god</li>
+<li>( )：标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用</li>
+<li>( )+：多个重复群组的判别</li>
 </ul>
-<h2 id="自定义Git"><a href="#自定义Git" class="headerlink" title="自定义Git"></a>自定义Git</h2><ul>
-<li>定义别名：<code>git config --global alias.st &#39;status&#39;</code></li>
-<li>忽略特殊文件：在.gitignore文件中配置</li>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
+<li>t[ae]st  匹配test或tast</li>
+<li>[^g]oo  匹配oo，但前边不能是g</li>
+<li>[^[:lower:]]oo  匹配oo，前边不能是小写字母</li>
+<li>[0-9]或[[:digit:]]  匹配数字0-9</li>
+<li>^the   匹配位于行首的the</li>
+<li>^[^[:alpha:]]   匹配行首非英文字母</li>
+<li>\.$   匹配以小数点结尾的行</li>
+<li>^$   匹配空白行</li>
+<li>^#   匹配以#开头的行</li>
+<li>a*  匹配0到无穷多个字符a</li>
+<li>aa*  匹配1到无穷多个字符a，以此类推</li>
+<li>.*   匹配0到无穷多个任意字符</li>
+<li>go{2,5}g   匹配两个g中间出现2~5次o</li>
 </ul>
 
                 
@@ -418,9 +369,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/" class="print-no-link">#Git</a>
-      
-        <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" class="print-no-link">#版本管理</a>
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
     </div>
   
@@ -432,8 +381,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>我的Git学习笔记</div>
-      <div>https://aquariusleo.github.io/posts/3059.html</div>
+      <div>Linux笔记-正则表达式</div>
+      <div>https://aquariusleo.github.io/posts/789.html</div>
     </div>
     <div class="license-meta">
       
@@ -445,7 +394,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年1月5日</div>
+          <div>2025年9月7日</div>
         </div>
       
       
@@ -477,18 +426,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/d4a8.html" title="LeetCode刷题总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode刷题总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/3eeb.html" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/posts/9abd.html" title="Linux笔记-Linux快捷键">
+                        <span class="hidden-mobile">Linux笔记-Linux快捷键</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
