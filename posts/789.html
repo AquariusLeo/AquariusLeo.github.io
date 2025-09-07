@@ -19,15 +19,15 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="正则表达式RegularExpression一种字符串处理的表示方式 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]） [:alpha:]：英文大小写字符 [:lower:]：英文小写字符，即a~z [:upper:]：英文大写字符，即A~Z [:digit:]：数字，即0~9 [:blank:]：空格键与Tab">
+    <meta name="description" content="正则表达式RegularExpression一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 grep -n &quot;g..d&quot; tmp.txt 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux笔记-正则表达式">
 <meta property="og:url" content="https://aquariusleo.github.io/posts/789.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="正则表达式RegularExpression一种字符串处理的表示方式 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]） [:alpha:]：英文大小写字符 [:lower:]：英文小写字符，即a~z [:upper:]：英文大写字符，即A~Z [:digit:]：数字，即0~9 [:blank:]：空格键与Tab">
+<meta property="og:description" content="正则表达式RegularExpression一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 grep -n &quot;g..d&quot; tmp.txt 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-06T16:46:30.663Z">
-<meta property="article:modified_time" content="2025-09-07T13:51:40.932Z">
+<meta property="article:modified_time" content="2025-09-07T14:35:34.696Z">
 <meta property="article:author" content="AquariusLeo">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          669 字
+          841 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          6 分钟
+          8 分钟
         
       </span>
     
@@ -287,7 +287,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="正则表达式RegularExpression"><a href="#正则表达式RegularExpression" class="headerlink" title="正则表达式RegularExpression"></a>正则表达式RegularExpression</h1><p>一种字符串处理的表示方式</p>
+                <h1 id="正则表达式RegularExpression"><a href="#正则表达式RegularExpression" class="headerlink" title="正则表达式RegularExpression"></a>正则表达式RegularExpression</h1><p>一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 <code>grep -n &quot;g..d&quot; tmp.txt</code> 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。</p>
 <h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><ul>
 <li>[:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]）</li>
 <li>[:alpha:]：英文大小写字符</li>
@@ -300,7 +300,7 @@
 <li>[:print:]：代表任何可以被打印出来的字符</li>
 <li>[:punct:]：代表标点符号（punctuation symbol），亦即:”‘?!;:#$</li>
 <li>[:space:]：任何会产生空白的字符，包括空格键、[Tab]、 CR等</li>
-<li>[:xdigit:]：代表十六进制的数字类型，因此包括0<del>9、A</del>F、a~f的数字与字符</li>
+<li>[:xdigit:]：代表十六进制的数字类型，因此包括0 ~ 9、A ~ F、a ~ f 的数字与字符</li>
 </ul>
 <h2 id="基础RE字符"><a href="#基础RE字符" class="headerlink" title="基础RE字符"></a>基础RE字符</h2><ul>
 <li>^word：^匹配行首</li>
@@ -313,8 +313,11 @@
 <li>[^list]：反向选择，匹配不在list中的字符</li>
 <li>{n,m}：代表前一个RE字符重复n到m次，{n}表示重复n次，{n,}表示重复至少n次</li>
 </ul>
+<blockquote>
+<p>注意 { 与 } 符号在shell中有特殊含义（用于变量），所以如果在shell中grep使用正则，要加上转义符\ 。例如输入 <code>grep -n &quot;o\&#123;2\&#125;&quot; tmp.txt</code>  将在文件中匹配含有两个o的字符串。在其他地方用正则不用这样。</p>
+</blockquote>
 <h2 id="拓展RE字符"><a href="#拓展RE字符" class="headerlink" title="拓展RE字符"></a>拓展RE字符</h2><ul>
-<li>要使用egrep（grep -E的别名）或sed  -r，见私房菜P376</li>
+<li>拓展正则表达式要使用egrep（grep -E的别名）或sed  -r，见私房菜P376</li>
 <li>+：加号，与一个RE字符搭配使用，表示前一个RE字符重复1到无穷多次</li>
 <li>?：问号，与一个RE字符搭配使用，表示前一个RE字符重复0或1次</li>
 <li>|：或，如 gd|god</li>
@@ -336,6 +339,9 @@
 <li>.*   匹配0到无穷多个任意字符</li>
 <li>go{2,5}g   匹配两个g中间出现2~5次o</li>
 </ul>
+<blockquote>
+<p>例：<code>grep -n &quot;go\&#123;2,5\&#125;g&quot; tmp.txt</code></p>
+</blockquote>
 
                 
               </div>
