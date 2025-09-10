@@ -346,7 +346,7 @@
 </li>
 <li><p><code>git remote rm &lt;name&gt;</code> ：删除远程库连接</p>
 </li>
-<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
+<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
 <h4 id="分支管理："><a href="#分支管理：" class="headerlink" title="分支管理："></a>分支管理：</h4></li>
 <li><p><code>git branch</code> ：列出所有的已存在分支</p>
 </li>
@@ -503,29 +503,26 @@
   
     <article id="comments" lazyload>
       
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#comments', function() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'AquariusLeo/AquariusLeo.github.io');
-      s.setAttribute('issue-term', 'title');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    })
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://chimerical-moxie-8dfa59.netlify.app/.netlify/functions/comment","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"reaction":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
   </script>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
