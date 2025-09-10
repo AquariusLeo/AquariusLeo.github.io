@@ -22,7 +22,7 @@
     <meta name="description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的Git学习笔记">
-<meta property="og:url" content="https://aquariusleo.github.io/posts/3059.html">
+<meta property="og:url" content="https://leo.zz.ac/posts/3059.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
 <meta property="og:description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
 <meta property="og:locale" content="zh_CN">
@@ -36,6 +36,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2015/02/1352126739_7909.jpg">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>我的Git学习笔记 - AquariusLeo&#39;s Blogs</title>
@@ -76,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"aquariusleo.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":21941563},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"leo.zz.ac","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -86,17 +88,6 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
 
 
   
@@ -256,6 +247,15 @@
 
     
     
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
   </div>
 
 
@@ -346,7 +346,7 @@
 </li>
 <li><p><code>git remote rm &lt;name&gt;</code> ：删除远程库连接</p>
 </li>
-<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
+<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
 <h4 id="分支管理："><a href="#分支管理：" class="headerlink" title="分支管理："></a>分支管理：</h4></li>
 <li><p><code>git branch</code> ：列出所有的已存在分支</p>
 </li>
@@ -433,7 +433,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>我的Git学习笔记</div>
-      <div>https://aquariusleo.github.io/posts/3059.html</div>
+      <div>https://leo.zz.ac/posts/3059.html</div>
     </div>
     <div class="license-meta">
       
@@ -630,6 +630,32 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
   
 </div>
 
@@ -774,6 +800,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
