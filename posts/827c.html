@@ -19,15 +19,15 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="正则表达式RegularExpression一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 grep -n &quot;g..d&quot; tmp.txt 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括">
+    <meta name="description" content="shell脚本脚本开头要写的内容 #!&#x2F;bin&#x2F;bash 脚本的功能、作者、版本信息等 预先设置环境变量  变量相关规则 设置变量时用等号连接，如：myname&#x3D;vbird 引用变量的方式：${变量名} 或 $变量名（可能引起歧义的情况下尽量使用花括号） 输出变量内容：echo  ${变量名} 变量名不能以数字开头 等号两边不能直接出现空格，如：myname&amp;#x3D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux笔记-正则表达式">
-<meta property="og:url" content="https://leo.zz.ac/posts/789.html">
+<meta property="og:title" content="Linux笔记-shell脚本">
+<meta property="og:url" content="https://leo.zz.ac/posts/827c.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="正则表达式RegularExpression一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 grep -n &quot;g..d&quot; tmp.txt 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。 特殊符号 [:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括">
+<meta property="og:description" content="shell脚本脚本开头要写的内容 #!&#x2F;bin&#x2F;bash 脚本的功能、作者、版本信息等 预先设置环境变量  变量相关规则 设置变量时用等号连接，如：myname&#x3D;vbird 引用变量的方式：${变量名} 或 $变量名（可能引起歧义的情况下尽量使用花括号） 输出变量内容：echo  ${变量名} 变量名不能以数字开头 等号两边不能直接出现空格，如：myname&amp;#x3D">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-06T16:46:30.663Z">
-<meta property="article:modified_time" content="2025-09-07T14:35:34.696Z">
+<meta property="article:published_time" content="2025-09-06T16:46:55.111Z">
+<meta property="article:modified_time" content="2025-09-14T09:16:45.798Z">
 <meta property="article:author" content="AquariusLeo">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Linux笔记-正则表达式 - AquariusLeo&#39;s Blogs</title>
+  <title>Linux笔记-shell脚本 - AquariusLeo&#39;s Blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux笔记-正则表达式"></span>
+            <span id="subtitle" data-typed-text="Linux笔记-shell脚本"></span>
           
         </div>
 
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          841 字
+          1.1k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -282,12 +282,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Linux笔记-正则表达式</h1>
+            <h1 id="seo-header">Linux笔记-shell脚本</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月7日 晚上
+                    本文最后更新于 2025年9月14日 下午
                   
                 
               </p>
@@ -295,61 +295,80 @@
             
               <div class="markdown-body">
                 
-                <h1 id="正则表达式RegularExpression"><a href="#正则表达式RegularExpression" class="headerlink" title="正则表达式RegularExpression"></a>正则表达式RegularExpression</h1><p>一种字符串处理的表示方式。正则表达式可用在多种场合，常见的用法是用grep&#x2F;sed&#x2F;awk命令对文件内容进行匹配筛选，如 <code>grep -n &quot;g..d&quot; tmp.txt</code> 命令匹配文件中含有g??d形式的行，并输出行号。还可用于vim编辑器中。</p>
-<h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><ul>
-<li>[:alnum:]：英文大小写字符及数字（注意匹配时要写双层方括号，如 [[:alnum:]] 、[^[:digit:]]）</li>
-<li>[:alpha:]：英文大小写字符</li>
-<li>[:lower:]：英文小写字符，即a~z</li>
-<li>[:upper:]：英文大写字符，即A~Z</li>
-<li>[:digit:]：数字，即0~9</li>
-<li>[:blank:]：空格键与Tab键</li>
-<li>[:graph:]：除了空格符（空格键与[Tab]按键）外的其他所有按键</li>
-<li>[:cntrl:]：控制按键，包括CR、LF、Tab、Del等</li>
-<li>[:print:]：代表任何可以被打印出来的字符</li>
-<li>[:punct:]：代表标点符号（punctuation symbol），亦即:”‘?!;:#$</li>
-<li>[:space:]：任何会产生空白的字符，包括空格键、[Tab]、 CR等</li>
-<li>[:xdigit:]：代表十六进制的数字类型，因此包括0 ~ 9、A ~ F、a ~ f 的数字与字符</li>
+                <h1 id="shell脚本"><a href="#shell脚本" class="headerlink" title="shell脚本"></a>shell脚本</h1><h2 id="脚本开头要写的内容"><a href="#脚本开头要写的内容" class="headerlink" title="脚本开头要写的内容"></a>脚本开头要写的内容</h2><ul>
+<li>#!&#x2F;bin&#x2F;bash</li>
+<li>脚本的功能、作者、版本信息等</li>
+<li>预先设置环境变量</li>
 </ul>
-<h2 id="基础RE字符"><a href="#基础RE字符" class="headerlink" title="基础RE字符"></a>基础RE字符</h2><ul>
-<li>^word：^匹配行首</li>
-<li>word$：$匹配行尾</li>
-<li>.：小数点，匹配一个任意字符</li>
-<li>*：星号，与一个RE字符搭配使用，表示前一个RE字符重复0到无穷多次（注意正则表达式与通配符不同，通配符中星号代表0到无穷多个字符，？代表任意一个字符）</li>
-<li>\：将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\\‘ 匹配 “\“，而 ‘\(‘ 则匹配 “(“。</li>
-<li>[list]：字符集合，匹配一个方括号中的字符，注意仅匹配一个</li>
-<li>[n1-n2]：字符范围，匹配两个字符之间的连续字符中的一个</li>
-<li>[^list]：反向选择，匹配不在list中的字符</li>
-<li>{n,m}：代表前一个RE字符重复n到m次，{n}表示重复n次，{n,}表示重复至少n次</li>
+<h2 id="变量相关规则"><a href="#变量相关规则" class="headerlink" title="变量相关规则"></a>变量相关规则</h2><ul>
+<li>设置变量时用等号连接，如：myname&#x3D;vbird</li>
+<li>引用变量的方式：${变量名} 或 $变量名（可能引起歧义的情况下尽量使用花括号）</li>
+<li>输出变量内容：echo  ${变量名}</li>
+<li>变量名不能以数字开头</li>
+<li>等号两边不能直接出现空格，如：myname&#x3D;vbird as是错的</li>
+<li>变量内容若有空格可用单引号或双引号，双引号中的特殊字符保留原本功能，单引号中的特殊字符仅为一般字符，如var&#x3D;”lang is $LANG”，$LANG替换为变量内容</li>
+<li>可用反斜杠\将特殊字符( [Enter]、$、\、空格、’ )转义为一般字符，如：myname&#x3D;vbird\ tsai</li>
+<li>若要扩增变量内容，可以如：PATH&#x3D;”$PATH”:&#x2F;home&#x2F;bin 或 PATH&#x3D;${PATH}:&#x2F;home&#x2F;bin</li>
+<li>若要获得额外的命令所提供的信息进行替换时，可用 $(命令) ，如：version&#x3D;$(uname -r)</li>
+<li>可使用unset取消变量，如：unset  myname</li>
+<li>变量的数值计算，用$((运算式))，如 total&#x3D;$(( ${firstnu}*${secnu} ))，但bash中数值计算最多只能到整数</li>
+<li>变量的默认类型为字符串，若要定义整数：declare -i num&#x3D;12，定义数组：declare -a array&#x3D;(a b c d)</li>
 </ul>
-<blockquote>
-<p>注意 { 与 } 符号在shell中有特殊含义（用于变量），所以如果在shell中grep使用正则，要加上转义符\ 。例如输入 <code>grep -n &quot;o\&#123;2\&#125;&quot; tmp.txt</code>  将在文件中匹配含有两个o的字符串。在其他地方用正则不用这样。</p>
-</blockquote>
-<h2 id="拓展RE字符"><a href="#拓展RE字符" class="headerlink" title="拓展RE字符"></a>拓展RE字符</h2><ul>
-<li>拓展正则表达式要使用egrep（grep -E的别名）或sed  -r，见私房菜P376</li>
-<li>+：加号，与一个RE字符搭配使用，表示前一个RE字符重复1到无穷多次</li>
-<li>?：问号，与一个RE字符搭配使用，表示前一个RE字符重复0或1次</li>
-<li>|：或，如 gd|god</li>
-<li>( )：标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用</li>
-<li>( )+：多个重复群组的判别</li>
+<h2 id="脚本执行的两种方式"><a href="#脚本执行的两种方式" class="headerlink" title="脚本执行的两种方式"></a>脚本执行的两种方式</h2><ol>
+<li>直接执行：包括：1、使用绝对路径&#x2F;相对路径；2、将所在目录放在PATH环境变量中；（1、2两种需要为脚本文件加上rx权限）3、用bash&#x2F;sh命令执行脚本。特点是在子进程的bash中执行，子进程结束后，变量或操作不会传回父进程。</li>
+<li>利用source：用法是source  脚本名，特点是在父进程中执行，各项操作会在原bash中生效</li>
+</ol>
+<h2 id="test命令的测试功能"><a href="#test命令的测试功能" class="headerlink" title="test命令的测试功能"></a>test命令的测试功能</h2><p>语法：test  选项  文件名&#x2F;变量&#x2F;字符串……</p>
+<p>test命令没有输出，当测试成功，命令返回值 $? 变量为0，失败则为非0。因此可以结合&amp;&amp;、|| 使用。</p>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><ul>
+<li>-e：文件名是否存在</li>
+<li>-f：文件名是否存在且为文件</li>
+<li>-d：文件名是否存在且为目录</li>
+<li>n1 -eq n2：两数值相等（不等使用-ne）</li>
+<li>n1 -gt n2：n1大于n2（小于使用-lt）</li>
+<li>-z  string：字符串是否为空</li>
+<li>str1 &#x3D; str2     （若使用判断符号，必须写为[ str1 &#x3D; str2 ] 或者 [[ str1 &#x3D;&#x3D; str2 ]]）</li>
+<li>str1 !&#x3D; str2</li>
+<li>-a 且   -o 或     ！非</li>
 </ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
-<li>t[ae]st  匹配test或tast</li>
-<li>[^g]oo  匹配oo，但前边不能是g</li>
-<li>[^[:lower:]]oo  匹配oo，前边不能是小写字母</li>
-<li>[0-9]或[[:digit:]]  匹配数字0-9</li>
-<li>^the   匹配位于行首的the</li>
-<li>^[^[:alpha:]]   匹配行首非英文字母</li>
-<li>\.$   匹配以小数点结尾的行</li>
-<li>^$   匹配空白行</li>
-<li>^#   匹配以#开头的行</li>
-<li>a*  匹配0到无穷多个字符a</li>
-<li>aa*  匹配1到无穷多个字符a，以此类推</li>
-<li>.*   匹配0到无穷多个任意字符</li>
-<li>go{2,5}g   匹配两个g中间出现2~5次o</li>
+<p>更多选项及用法如文件类型、权限检测、文件比较、整数比较、字符串判定、多重条件判定等，见私房菜P396</p>
+<p>常结合命令执行的判断依据&amp;&amp;、|| 使用，如：test  -e  filename  &amp;&amp;  echo  “Exist”  ||  echo  “Not exist”</p>
+<h2 id="判断符号"><a href="#判断符号" class="headerlink" title="判断符号[ ]"></a>判断符号[ ]</h2><p>用法与test相同，如 [ -e  filename ] 等价于 test  -e  filename，也可与&amp;&amp;、|| 结合使用</p>
+<p>注意中括号内的每一个组件之间都要有空格分隔，每一个变量或常量都要有双引号</p>
+<h2 id="默认变量"><a href="#默认变量" class="headerlink" title="默认变量"></a>默认变量</h2><ul>
+<li>$0：脚本文件名</li>
+<li>$1、$2等：依次为各个参数</li>
+<li>$#：输入的参数个数</li>
+<li>$@：所有参数，代表【”$1”  “$2”  “$3”  …】，以空格隔开</li>
 </ul>
-<blockquote>
-<p>例：<code>grep -n &quot;go\&#123;2,5\&#125;g&quot; tmp.txt</code></p>
-</blockquote>
+<h2 id="基本语句"><a href="#基本语句" class="headerlink" title="基本语句"></a>基本语句</h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ 条件判断式1 ]; then<br>	程序段<br>elif [ 条件判断式2 ]; then<br>	程序段<br>else<br>	程序段<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>多个条件判断式可以用&amp;&amp;或 || 连接，如 [ 条件判断式1 ] &amp;&amp; [ 条件判断式2 ]</p>
+<h3 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">case $&#123;变量名&#125; in<br>   &quot;第1个变量内容&quot;）<br>	程序段<br>	;;<br>   &quot;第2个变量内容&quot;）<br>	程序段<br>	;;<br>   *)<br>	程序段<br>	;;<br>esac<br></code></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">function 函数名() &#123;<br>	函数体<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>函数体中可用$1、$2等代表参数1、参数2等</p>
+<p>调用方式：函数名  参数1  参数2  ……   如：<code>printit 1</code></p>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><h4 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">while [ 条件判断式 ]<br>do<br>	程序段<br>done<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="until语句"><a href="#until语句" class="headerlink" title="until语句"></a>until语句</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">until [ 条件判断式 ]<br>do<br>	程序段<br>done<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">for var in con1 con2 ...<br>do<br>	程序段<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">例子：</span><br>users=$(cut -d &#x27;:&#x27; -f1 /etc/passwd)<br>for username in $&#123;users&#125;<br>do<br>	id $&#123;username&#125;<br>done<br></code></pre></td></tr></table></figure>
+
+<p>in后面的内容可以用 $(seq  n1  n2) 或 {n1…n2} ，代表n1到n2的连续输字</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">for (( 初始值; 限制值; 赋值运算 ))<br>do<br>	程序段<br>done<br></code></pre></td></tr></table></figure>
+
+<p>与C语言用法相同</p>
+<h2 id="脚本跟踪与调试"><a href="#脚本跟踪与调试" class="headerlink" title="脚本跟踪与调试"></a>脚本跟踪与调试</h2><p>sh  调试shell脚本</p>
+<p>语法：sh [-nx] 脚本名</p>
+<p>选项</p>
+<ul>
+<li>-n：不执行脚本，仅查询语法问题</li>
+<li>-x：将执行过程显示出来，非常有用，可用于调试</li>
+</ul>
 
                 
               </div>
@@ -395,8 +414,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Linux笔记-正则表达式</div>
-      <div>https://leo.zz.ac/posts/789.html</div>
+      <div>Linux笔记-shell脚本</div>
+      <div>https://leo.zz.ac/posts/827c.html</div>
     </div>
     <div class="license-meta">
       
@@ -414,7 +433,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月7日</div>
+          <div>2025年9月14日</div>
         </div>
       
       
@@ -457,18 +476,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/827c.html" title="Linux笔记-shell脚本">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux笔记-shell脚本</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/9abd.html" title="Linux笔记-Linux快捷键">
-                        <span class="hidden-mobile">Linux笔记-Linux快捷键</span>
+                      <a href="/posts/789.html" title="Linux笔记-正则表达式">
+                        <span class="hidden-mobile">Linux笔记-正则表达式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
