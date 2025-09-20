@@ -19,28 +19,27 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
+    <meta name="description" content="磁盘与文件系统管理1. 文件系统管理dumpe2fs    查看ext系列文件系统超级块信息语法：dumpe2fs  [-h]  设备文件名 选项 -h：仅列出超级块信息，不列出区块群组信息   Linux的文件系统通常分为数据存放区域（包括inode表和数据区块）和元数据区（包括超级区块、inode对照表、区块对照表）。ext2为传统文件系统，ext3&#x2F;4、xfs为日志式文件系统，能解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的Git学习笔记">
-<meta property="og:url" content="https://leo.zz.ac/posts/3059.html">
+<meta property="og:title" content="Linux笔记-常用命令-磁盘与文件系统管理">
+<meta property="og:url" content="https://leo.zz.ac/posts/d21e.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="参考：Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com) Git简介Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。 基本概念 工作区（worktree）">
+<meta property="og:description" content="磁盘与文件系统管理1. 文件系统管理dumpe2fs    查看ext系列文件系统超级块信息语法：dumpe2fs  [-h]  设备文件名 选项 -h：仅列出超级块信息，不列出区块群组信息   Linux的文件系统通常分为数据存放区域（包括inode表和数据区块）和元数据区（包括超级区块、inode对照表、区块对照表）。ext2为传统文件系统，ext3&#x2F;4、xfs为日志式文件系统，能解">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://picr.zz.ac/2KIAZ1j8OdwtihselBqDixPTvQEBt3yZpUKWOYrd8FM">
-<meta property="og:image" content="https://picr.zz.ac/bbjYU1YbxGlq84assSJPgHtfnzGd9UZ9A2vPoGWxbd4">
-<meta property="article:published_time" content="2025-01-04T17:19:51.233Z">
-<meta property="article:modified_time" content="2025-09-19T16:50:06.570Z">
+<meta property="og:image" content="https://leo.zz.ac/img/1082.png">
+<meta property="og:image" content="https://leo.zz.ac/img/lsblk_blkid.png">
+<meta property="article:published_time" content="2025-09-20T15:10:50.000Z">
+<meta property="article:modified_time" content="2025-09-20T15:15:42.967Z">
 <meta property="article:author" content="AquariusLeo">
-<meta property="article:tag" content="Git">
-<meta property="article:tag" content="版本管理">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://picr.zz.ac/2KIAZ1j8OdwtihselBqDixPTvQEBt3yZpUKWOYrd8FM">
+<meta name="twitter:image" content="https://leo.zz.ac/img/1082.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>我的Git学习笔记 - AquariusLeo&#39;s Blogs</title>
+  <title>Linux笔记-常用命令-磁盘与文件系统管理 - AquariusLeo&#39;s Blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="我的Git学习笔记"></span>
+            <span id="subtitle" data-typed-text="Linux笔记-常用命令-磁盘与文件系统管理"></span>
           
         </div>
 
@@ -217,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-01-05 01:19" pubdate>
-          2025年1月5日 凌晨
+        <time datetime="2025-09-20 23:10" pubdate>
+          2025年9月20日 晚上
         </time>
       </span>
     
@@ -229,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.2k 字
         
       </span>
     
@@ -240,7 +239,7 @@
         
         
         
-          17 分钟
+          19 分钟
         
       </span>
     
@@ -286,12 +285,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">我的Git学习笔记</h1>
+            <h1 id="seo-header">Linux笔记-常用命令-磁盘与文件系统管理</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月20日 凌晨
+                    本文最后更新于 2025年9月20日 晚上
                   
                 
               </p>
@@ -299,100 +298,155 @@
             
               <div class="markdown-body">
                 
-                <p>参考：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
-<h2 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h2><p>Git是目前世界上最先进的分布式版本控制系统，可以自动记录每次文件的改动，还可以让同事协作编辑。在2005年由Linus开发。相比集中式，分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，不必联网；修改文件后只需把各自的修改推送给对方；还支持分支管理。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><strong>工作区（worktree）：</strong>电脑中本地代码实际存放的目录。</li>
-<li><strong>暂存区（staged&#x2F;index）：</strong>暂时存放文件的修改的地方，一般存放在 <strong>.git</strong> 目录下的 index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。</li>
-<li><strong>版本库：</strong>工作区有一个隐藏目录 <strong>.git</strong>，这个不算工作区，而是 Git 的版本库。包含了所有的分支与版本。</li>
+                <h1 id="磁盘与文件系统管理"><a href="#磁盘与文件系统管理" class="headerlink" title="磁盘与文件系统管理"></a>磁盘与文件系统管理</h1><h2 id="1-文件系统管理"><a href="#1-文件系统管理" class="headerlink" title="1. 文件系统管理"></a>1. 文件系统管理</h2><h4 id="dumpe2fs-查看ext系列文件系统超级块信息"><a href="#dumpe2fs-查看ext系列文件系统超级块信息" class="headerlink" title="dumpe2fs    查看ext系列文件系统超级块信息"></a>dumpe2fs    查看ext系列文件系统超级块信息</h4><p>语法：dumpe2fs  [-h]  设备文件名</p>
+<h5 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-h：仅列出超级块信息，不列出区块群组信息</li>
 </ul>
-<p><img src="https://picr.zz.ac/2KIAZ1j8OdwtihselBqDixPTvQEBt3yZpUKWOYrd8FM" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage&#x2F;index），标记为 “master” 的是 master 分支所代表的目录树。</li>
-<li>当对工作区修改（或新增）的文件执行 <code>git add</code> 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</li>
-<li>当执行提交操作 <code>git commit</code> 命令时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。</li>
-<li>HEAD指针指向版本库中当前分支、当前所在的版本（或者说指向某一个分支名，如main；而分支名main也是个指针，指向某一个commit）。可以使用<code>git reset</code>改变HEAD指针指向的版本。HEAD^表示当前版本的父版本，HEAD^^表示上两个版本，以此类推。commit_id也可以用版本号的前几位表示。</li>
+<blockquote>
+<p>Linux的文件系统通常分为数据存放区域（包括inode表和数据区块）和元数据区（包括超级区块、inode对照表、区块对照表）。ext2为传统文件系统，ext3&#x2F;4、xfs为日志式文件系统，能解决系统中止造成的元数据与数据存放区域不一致问题。</p>
+</blockquote>
+<h4 id="xfs-info-查看xfs文件系统信息"><a href="#xfs-info-查看xfs文件系统信息" class="headerlink" title="xfs_info    查看xfs文件系统信息"></a>xfs_info    查看xfs文件系统信息</h4><p>语法：xfs_info  设备文件名</p>
+<h4 id="df-查看文件系统的空间使用情况"><a href="#df-查看文件系统的空间使用情况" class="headerlink" title="df    查看文件系统的空间使用情况"></a>df    查看文件系统的空间使用情况</h4><p>语法：df  [-ahiT]  file&#x2F;dir&#x2F;设备文件名（最后参数为文件&#x2F;目录时，显示该文件&#x2F;目录所在文件系统的使用情况）</p>
+<h5 id="选项-1"><a href="#选项-1" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-a：列出所有的文件系统，包括&#x2F;proc等</li>
+<li>-h：将容量以人类较易读的方式显示</li>
+<li>-i：不用磁盘容量，而以inode数量来显示</li>
+<li>-T：显示文件系统的类型</li>
 </ul>
-<h2 id="创建版本库（仓库）"><a href="#创建版本库（仓库）" class="headerlink" title="创建版本库（仓库）"></a>创建版本库（仓库）</h2><p>进入某个目录后，执行<code>git init</code>命令。该目录下就会自动生成 .git文件夹，该目录变成一个Git管理的版本库。</p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
-<li><p><code>git add &lt;file&gt;</code> ：添加文件修改到暂存区</p>
+<p>常用于查看文件系统（分区）的使用情况</p>
+<h4 id="du-查看目录-文件的空间占用情况"><a href="#du-查看目录-文件的空间占用情况" class="headerlink" title="du    查看目录&#x2F;文件的空间占用情况"></a>du    查看目录&#x2F;文件的空间占用情况</h4><p>语法：du  [-ahsS]  file&#x2F;dir</p>
+<h5 id="选项-2"><a href="#选项-2" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-a：不仅列出所有子孙目录、该目录的大小，还列出所有文件的大小</li>
+<li>-h：将容量以人类较易读的方式显示</li>
+<li>-s：只列出该目录的大小总计，不列出文件与子目录</li>
+<li>-S：对于所列出的每一个目录大小，只计算目录下的文件总计，不计算子目录大小</li>
+</ul>
+<p><strong>常用 [du  -sh  目录名] 查看单个目录大小</strong>，可以用  目录名&#x2F;*  查看一个目录下所有子目录的大小</p>
+<blockquote>
+<p>不加任何选项时，du只列出该目录下每个子目录（以及递归的所有子孙目录）与该目录的大小，不列出该目录下文件的大小。默认以1K为单位。</p>
+</blockquote>
+<p><img src="/../../img/1082.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="ln-建立链接文件"><a href="#ln-建立链接文件" class="headerlink" title="ln    建立链接文件"></a>ln    建立链接文件</h4><p>语法：ln  [-sf]  sourcefile  destinationfile</p>
+<h5 id="选项-3"><a href="#选项-3" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-s：建立符号链接，而非硬链接（不加-s，默认建立硬链接）</li>
+<li>-f：强制，若目标文件已存在，主动将目标文件删除后再建立</li>
+</ul>
+<p><strong>硬链接</strong>（hard link）：多个文件名对应到同一个inode，即某个目录下新增一条文件名链接到inode号码的关联记录。占用磁盘空间和inode数都不会增加。源文件删除后链接仍可读取。但不能跨文件系统、链接目录。</p>
+<p><strong>符号链接</strong>（symbolic link）：建立一个新文件，指向源文件的文件名。会增加磁盘空间和inode的占用。符号链接的大小（B）就是源文件名的字符数。源文件删除后链接不可读取。符号链接用途较广，可链接目录。</p>
+<h2 id="2-磁盘管理"><a href="#2-磁盘管理" class="headerlink" title="2. 磁盘管理"></a>2. 磁盘管理</h2><h4 id="a-观察磁盘分区状态"><a href="#a-观察磁盘分区状态" class="headerlink" title="a. 观察磁盘分区状态"></a>a. 观察磁盘分区状态</h4><h5 id="lsblk-列出系统上所有的区块设备（常为磁盘）"><a href="#lsblk-列出系统上所有的区块设备（常为磁盘）" class="headerlink" title="lsblk    列出系统上所有的区块设备（常为磁盘）"></a>lsblk    列出系统上所有的区块设备（常为磁盘）</h5><p>lsblk与blkid输出区别见附图</p>
+<p><img src="/../../img/lsblk_blkid.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="blkid-列出区块设备的UUID、文件系统类型"><a href="#blkid-列出区块设备的UUID、文件系统类型" class="headerlink" title="blkid    列出区块设备的UUID、文件系统类型"></a>blkid    列出区块设备的UUID、文件系统类型</h5><h5 id="parted-设备文件名-print-列出磁盘的分区表类型（MBR-GPT）和分区信息"><a href="#parted-设备文件名-print-列出磁盘的分区表类型（MBR-GPT）和分区信息" class="headerlink" title="parted  设备文件名  print    列出磁盘的分区表类型（MBR&#x2F;GPT）和分区信息"></a>parted  设备文件名  print    列出磁盘的分区表类型（MBR&#x2F;GPT）和分区信息</h5><div class="note note-info">
+            <p><strong>对磁盘进行分区</strong>的步骤通常为：用lsblk或blkid找到磁盘，用parted print查看分区表类型，再根据类型选择gdisk或fdisk进行分区，partprobe更新内核信息，再用mkfs进行格式化，最后用mount进行挂载，写入&#x2F;etc&#x2F;fstab的相关行</p>
+          </div>
+
+<div class="note note-info">
+            <p><strong>删除磁盘分区</strong>的步骤为：用umount卸载分区，删除&#x2F;etc&#x2F;fstab的相关行，用gdisk删除分区，partprobe更新内核信息</p>
+          </div>
+
+
+
+
+<h4 id="b-进行磁盘分区"><a href="#b-进行磁盘分区" class="headerlink" title="b. 进行磁盘分区"></a>b. 进行磁盘分区</h4><h5 id="gdisk-对GPT分区表进行分区"><a href="#gdisk-对GPT分区表进行分区" class="headerlink" title="gdisk    对GPT分区表进行分区"></a>gdisk    对GPT分区表进行分区</h5><p>语法：gdisk  设备文件名</p>
+<p>根据提示进行新增、删除、查看分区</p>
+<blockquote>
+<p>这里设备文件名不能加数字，分区是针对整个磁盘设备（如&#x2F;dev&#x2F;sda）而非某个分区或者说文件系统（如&#x2F;dev&#x2F;sda1）</p>
+</blockquote>
+<h5 id="partprobe-更新Linux内核的分区表信息"><a href="#partprobe-更新Linux内核的分区表信息" class="headerlink" title="partprobe    更新Linux内核的分区表信息"></a>partprobe    更新Linux内核的分区表信息</h5><p>进行分区或删除分区后要用partprobe更新分区表信息</p>
+<h5 id="fdisk-对MBR分区表进行分区"><a href="#fdisk-对MBR分区表进行分区" class="headerlink" title="fdisk    对MBR分区表进行分区"></a>fdisk    对MBR分区表进行分区</h5><p>用法与gdisk相同</p>
+<blockquote>
+<p>注意GPT分区表要用gdisk，MBR分区表要用fdisk，不能搞错。处理分区时要先将文件系统卸载。</p>
+</blockquote>
+<h5 id="parted-同时支持GPT与MBR的分区"><a href="#parted-同时支持GPT与MBR的分区" class="headerlink" title="parted    同时支持GPT与MBR的分区"></a>parted    同时支持GPT与MBR的分区</h5><p>相比gdisk、fdisk，不必进行交互式操作，可用于脚本等，详见私房菜P256</p>
+<h4 id="c-磁盘格式化（创建fs）"><a href="#c-磁盘格式化（创建fs）" class="headerlink" title="c. 磁盘格式化（创建fs）"></a>c. 磁盘格式化（创建fs）</h4><h5 id="mkfs-xfs-格式化为xfs文件系统"><a href="#mkfs-xfs-格式化为xfs文件系统" class="headerlink" title="mkfs.xfs    格式化为xfs文件系统"></a>mkfs.xfs    格式化为xfs文件系统</h5><p>语法：mkfs.xfs  设备文件名</p>
+<p>具体选项见man，常用默认参数</p>
+<blockquote>
+<p>这里设备文件名要加数字，格式化是对一个分区（如&#x2F;dev&#x2F;sda1）进行格式化，创建文件系统</p>
+</blockquote>
+<h5 id="mkfs-ext4-格式化为ext4文件系统"><a href="#mkfs-ext4-格式化为ext4文件系统" class="headerlink" title="mkfs.ext4    格式化为ext4文件系统"></a>mkfs.ext4    格式化为ext4文件系统</h5><h4 id="d-文件系统检验"><a href="#d-文件系统检验" class="headerlink" title="d. 文件系统检验"></a>d. 文件系统检验</h4><h5 id="xfs-repair-检查与修复xfs文件系统"><a href="#xfs-repair-检查与修复xfs文件系统" class="headerlink" title="xfs_repair    检查与修复xfs文件系统"></a>xfs_repair    检查与修复xfs文件系统</h5><p>选项略</p>
+<h5 id="fsck-ext4-检查与修复ext4文件系统"><a href="#fsck-ext4-检查与修复ext4文件系统" class="headerlink" title="fsck.ext4    检查与修复ext4文件系统"></a>fsck.ext4    检查与修复ext4文件系统</h5><h4 id="e-文件系统挂载与卸载"><a href="#e-文件系统挂载与卸载" class="headerlink" title="e. 文件系统挂载与卸载"></a>e. 文件系统挂载与卸载</h4><h5 id="mount-挂载文件系统"><a href="#mount-挂载文件系统" class="headerlink" title="mount    挂载文件系统"></a>mount    挂载文件系统</h5><p>语法：mount  [-al] 或 mount  [-o]  设备文件名&#x2F;UUID&#x3D;’  ‘  挂载点</p>
+<h6 id="选项-4"><a href="#选项-4" class="headerlink" title="选项"></a>选项</h6><ul>
+<li>-a：依照配置文件&#x2F;etc&#x2F;fstab的数据将所有未挂载的磁盘都挂载上来</li>
+<li>-l：单纯的输入mount会显示目前挂载的信息，加上-l可增列Label名称</li>
+<li>-o：后面可以接一些挂载时额外加上的参数，比方说账号、密码、读写权限等，参数见私房菜P243</li>
+</ul>
+<blockquote>
+<p>一个<strong>文件系统</strong>（设备文件名&#x2F;分区）与一个<strong>挂载点</strong>（目录）应该一一对应。如果原目录非空，挂载后原文件会被暂时隐藏。一个磁盘（&#x2F;dev&#x2F;sda）进行分区后就分成了各分区（partition），各分区对应Linux中一个设备文件（&#x2F;dev&#x2F;sda1），对分区进行格式化后就成了文件系统（filesystem），最后将文件系统挂载（mount）在一个挂载点（目录）上，即可使用。</p>
+</blockquote>
+<blockquote>
+<p>这里设备文件名要加数字，挂载是对文件系统&#x2F;分区而言。推荐使用UUID进行挂载，避免更换设备导致设备文件名不一致。</p>
+</blockquote>
+<h5 id="umount-卸载文件系统"><a href="#umount-卸载文件系统" class="headerlink" title="umount    卸载文件系统"></a>umount    卸载文件系统</h5><p>语法：umount  设备文件名&#x2F;挂载点</p>
+<blockquote>
+<p>要将工作目录退出文件系统后才能卸载该文件系统</p>
+</blockquote>
+<h5 id="特殊挂载"><a href="#特殊挂载" class="headerlink" title="特殊挂载"></a>特殊挂载</h5><h6 id="挂载CD-DVD"><a href="#挂载CD-DVD" class="headerlink" title="挂载CD&#x2F;DVD"></a>挂载CD&#x2F;DVD</h6><ul>
+<li><p>mount  &#x2F;dev&#x2F;sr0  &#x2F;mnt&#x2F;cdrom</p>
 </li>
-<li><p><code>git commit -m &#39;message&#39;</code> ：提交暂存区的文件修改到版本库的当前分支。git管理的是文件的修改，add与commit操作的对象都是文件的修改。</p>
-</li>
-<li><p><code>git status</code> ：查看工作区的状态，哪些修改未提交</p>
-<h4 id="比较差异："><a href="#比较差异：" class="headerlink" title="比较差异："></a>比较差异：</h4></li>
-<li><p><code>git diff &lt;file&gt;</code> ：查看工作区与暂存区文件的差异</p>
-</li>
-<li><p><code>git diff --staged &lt;file&gt;</code> ：查看暂存区与版本库当前版本文件的差异</p>
-<h4 id="版本回退："><a href="#版本回退：" class="headerlink" title="版本回退："></a>版本回退：</h4></li>
-<li><p><code>git log</code> ：显示当前分支的版本历史，一个commit就对应了一个版本，也是分支图中的一个节点。<code>git log --graph --oneline --all</code>画出所有分支的分支图。</p>
-</li>
-<li><p><code>git reset --hard &lt;commit_id | HEAD&gt;</code> ：暂存区与工作区的文件都回退到某个版本。HEAD指针指向当前所在的版本；如果使用commit_id，HEAD指针和分支名指针也会改变（即版本库的当前版本变了）。</p>
-</li>
-<li><p><code>git reset &lt;commit_id | HEAD&gt;</code> ：（省略了–mixed）版本库与暂存区的文件回退到某个版本，工作区文件不变保留修改，变为未暂存的状态。如果使用commit_id，HEAD指针和分支名指针也会改变。（如果工作区已经和版本库一致，但上次提交的commit有错误，想要修改又不想产生新的commit，可以用此命令回退版本库，但保留工作区修改，修改工作区后重新提交）</p>
-</li>
-<li><p><code>git reflog</code> ：查看命令历史</p>
-<h4 id="撤销修改："><a href="#撤销修改：" class="headerlink" title="撤销修改："></a>撤销修改：</h4></li>
-<li><p><code>git restore &lt;file&gt;</code> ：使用暂存区的文件内容恢复工作区的文件（即丢弃工作区的修改）</p>
-</li>
-<li><p><code>git restore --staged &lt;file&gt;</code> ：使用版本库当前版本（HEAD）的内容恢复暂存区的内容（即取消暂存，工作区保持不变）</p>
-<img src="https://picr.zz.ac/bbjYU1YbxGlq84assSJPgHtfnzGd9UZ9A2vPoGWxbd4" srcset="/img/loading.gif" lazyload style="zoom: 33%;" />
-</li>
-<li><p><code>git rm &lt;file&gt;</code> ：删除一个文件，并将删除操作添加至暂存区</p>
-<h4 id="连接远程仓库："><a href="#连接远程仓库：" class="headerlink" title="连接远程仓库："></a>连接远程仓库：</h4></li>
-<li><p><code>git remote add origin git@github.com:AquariusLeo/gitlearning.git</code> ：连接GitHub上的远程仓库，origin是这个远程连接的引用的名字，可以随便改</p>
-</li>
-<li><p><code>git remote -v</code> ：查看连接的远程仓库信息</p>
-</li>
-<li><p><code>git remote show &lt;remote-name&gt;</code>：查看所有的远程连接，或查看指定的连接的信息。</p>
-</li>
-<li><p><code>git push [-u] origin main</code> ：把本地的main分支的修改推送到远程库origin中。-u：将本地的main分支关联到远程库的main分支，即追踪tracking&#x2F;upstream。之后推送修改就不需要加-u。</p>
-</li>
-<li><p><code>git pull</code> ：把远程仓库的最新commit抓取到本地的当前分支。抓取前需要建立与远程分支的追踪关系。</p>
-</li>
-<li><p><code>git branch --set-upstream-to=origin/&lt;branch-name&gt; &lt;local-branch-name&gt;</code>：将本地分支与远程分支建立追踪关系。追踪关系可以用<code>git remote show origin</code>查看。在pull或者push之前都要建立追踪关系，或者使用-u选项</p>
-</li>
-<li><p><code>git remote rm &lt;name&gt;</code> ：删除远程库连接</p>
-</li>
-<li><p><code>git clone &lt;url&gt;</code> ：从远程库克隆。url可以使用ssh协议的<a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>……  形式，也可以是http协议的<a target="_blank" rel="noopener" href="https://github.com/%E2%80%A6%E2%80%A6">https://github.com/……</a>  形式</p>
-<h4 id="分支管理："><a href="#分支管理：" class="headerlink" title="分支管理："></a>分支管理：</h4></li>
-<li><p><code>git branch</code> ：列出所有的已存在分支</p>
-</li>
-<li><p><code>git branch &lt;branchname&gt;</code> ：创建一个新分支，指向当前HEAD的位置。–delete：删除分支，–move：移动&#x2F;重命名分支，–copy：复制分支</p>
-</li>
-<li><p><code>git switch &lt;branchname&gt;</code> ：切换分支。-c：创建后再切换。</p>
-</li>
-<li><p><code>git merge &lt;branchname&gt;</code> ：合并branchname分支到当前分支。当Git无法自动合并分支时，就必须首先解决冲突，把Git合并失败的文件手动编辑为我们希望的内容。解决冲突后，再add、commit，合并完成。–no-ff：禁用Fast forward模式，在merge时必定生成一个commit，这样可避免删除分支后，会丢掉分支信息。</p>
-</li>
-<li><p><code>git stash</code> ：保存当前工作现场（包括工作区未add的修改和暂存区未commit的修改），之后工作区会是干净的，可以放心地创建新分支。主要用于在开发过程中临时去别的分支修复bug。</p>
-</li>
-<li><p><code>git stash list</code> ：查看所有被保存的工作现场。</p>
-</li>
-<li><p><code>git stash pop</code> ：恢复上一个保存的stash，并把它删除。</p>
-</li>
-<li><p><code>git cherry-pick &lt;commit_id&gt;</code> ：复制某个commit的修改到当前分支。常用于复制bug修复。</p>
-</li>
-<li><p><code>git rebase</code> ：（变基）把本地未push的分叉提交历史整理成直线，使得在查看历史提交的变化时更容易</p>
-<h4 id="多人协作的工作模式："><a href="#多人协作的工作模式：" class="headerlink" title="多人协作的工作模式："></a>多人协作的工作模式：</h4></li>
-<li><p>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</p>
-</li>
-<li><p>如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并；</p>
-</li>
-<li><p>如果pull合并有冲突，则解决冲突，并在本地add、commit提交；</p>
-</li>
-<li><p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</p>
-</li>
-<li><p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to=origin/&lt;branch-name&gt; &lt;local-branch-name&gt;</code>。</p>
-<h4 id="标签管理："><a href="#标签管理：" class="headerlink" title="标签管理："></a>标签管理：</h4></li>
-<li><p>标签是版本库的一个快照，唯一确定了打标签时刻的版本，其实就是指向某个commit的指针。使用标签是为了定义简明的版本号，而不是使用很长的commit_id。</p>
-</li>
-<li><p><code>git tag &lt;tagname&gt; [&lt;commit_id&gt;]</code> ：给某个commit打上标签。<code>git tag</code>会列出所有的标签，<code>git show &lt;tagname&gt;</code>查看标签信息。-d：删除标签。</p>
+<li><p>卸载光盘后才能退出光盘</p>
 </li>
 </ul>
-<h2 id="自定义Git"><a href="#自定义Git" class="headerlink" title="自定义Git"></a>自定义Git</h2><ul>
-<li>定义别名：<code>git config --global alias.st &#39;status&#39;</code></li>
-<li>忽略特殊文件：在.gitignore文件中配置</li>
+<h6 id="挂载U盘（vfat）"><a href="#挂载U盘（vfat）" class="headerlink" title="挂载U盘（vfat）"></a>挂载U盘（vfat）</h6><ul>
+<li><p>mount  -o  codepage&#x3D;950,iocharset&#x3D;utf8  UUID&#x3D;35BC-6D6B  &#x2F;mnt&#x2F;usb</p>
+</li>
+<li><p>其中的参数用于指定使用的语系</p>
+</li>
 </ul>
+<h6 id="挂载CD-DVD镜像文件"><a href="#挂载CD-DVD镜像文件" class="headerlink" title="挂载CD&#x2F;DVD镜像文件"></a>挂载CD&#x2F;DVD镜像文件</h6><ul>
+<li><p>mount  -o  loop  &#x2F;tmp&#x2F;xxx.iso   &#x2F;mnt&#x2F;iso</p>
+</li>
+<li><p>其中-o  loop参数表明挂载一个loop回环设备，详见私房菜P251</p>
+</li>
+</ul>
+<h6 id="挂载loop设备文件"><a href="#挂载loop设备文件" class="headerlink" title="挂载loop设备文件"></a>挂载loop设备文件</h6><ul>
+<li>效果：在原分区下，用一个大文件模拟划分出一个新分区</li>
+<li>制作大型文件：dd  if&#x3D;&#x2F;dev&#x2F;zero  of&#x3D;&#x2F;tmp&#x2F;loopdev  bs&#x3D;1M  count&#x3D;512</li>
+<li>格式化大型文件：mkfs.xfs  -f  &#x2F;tmp&#x2F;loopdev</li>
+<li>挂载：mount  -o  loop  &#x2F;tmp&#x2F;loopdev  &#x2F;mnt&#x2F;loopdev</li>
+</ul>
+<blockquote>
+<p>回环设备的用途：在原分区中划分出一个新分区、用文件模拟创建swap分区</p>
+</blockquote>
+<h6 id="重新挂载根目录"><a href="#重新挂载根目录" class="headerlink" title="重新挂载根目录"></a>重新挂载根目录</h6><ul>
+<li><p>mount  -o  remount,rw,auto  &#x2F;</p>
+</li>
+<li><p>根目录不能被卸载。当你进入单人维护模式时，你的根目录常会被系统挂载为只读，这个时候这个命令就太重要了</p>
+</li>
+</ul>
+<h5 id="启动挂载"><a href="#启动挂载" class="headerlink" title="启动挂载"></a>启动挂载</h5><p>若要设置系统启动时自动挂载文件系统，需修改配置文件&#x2F;etc&#x2F;fstab，详见私房菜P249</p>
+<h4 id="f-参数自定义"><a href="#f-参数自定义" class="headerlink" title="f. 参数自定义"></a>f. 参数自定义</h4><h5 id="mknod-手动创建设备文件"><a href="#mknod-手动创建设备文件" class="headerlink" title="mknod    手动创建设备文件"></a>mknod    手动创建设备文件</h5><p>语法：mknod  设备文件名  [bcp]  [major]  [minor]</p>
+<h6 id="选项-5"><a href="#选项-5" class="headerlink" title="选项"></a>选项</h6><ul>
+<li><p>b：设置设备名称成为一个区块设备文件，例如磁盘等</p>
+</li>
+<li><p>c：设置设备名称成为一个字符设备文件，例如鼠标&#x2F;键盘等</p>
+</li>
+<li><p>p：设置设备名称成为一个管道文件</p>
+</li>
+<li><p>major：主要设备代码</p>
+</li>
+<li><p>minor：次要设备代码</p>
+</li>
+</ul>
+<h5 id="xfs-admin-修改xfs文件系统的UUID与Label-name"><a href="#xfs-admin-修改xfs文件系统的UUID与Label-name" class="headerlink" title="xfs_admin    修改xfs文件系统的UUID与Label name"></a>xfs_admin    修改xfs文件系统的UUID与Label name</h5><p>语法：xfs_ admin  [-lu]  [-L label]  [-U uuid]  设备文件名</p>
+<h6 id="选项-6"><a href="#选项-6" class="headerlink" title="选项"></a>选项</h6><ul>
+<li><p>-l：列出这个设备的label name</p>
+</li>
+<li><p>-u：列出这个设备的UUID</p>
+</li>
+<li><p>-L：设置这个设备的Label name</p>
+</li>
+<li><p>-U：设置这个设备的UUID（UUID可用uuidgen命令生成）</p>
+</li>
+</ul>
+<h5 id="tune2fs-修改ext4文件系统的UUID与Label-name"><a href="#tune2fs-修改ext4文件系统的UUID与Label-name" class="headerlink" title="tune2fs    修改ext4文件系统的UUID与Label name"></a>tune2fs    修改ext4文件系统的UUID与Label name</h5><p>用法与xfs_admin相同</p>
+<h4 id="g-创建swap分区"><a href="#g-创建swap分区" class="headerlink" title="g. 创建swap分区"></a>g. 创建swap分区</h4><p>内存交换分区，用于内存不足时的暂存。不需要挂载到目录。</p>
+<h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ul>
+<li>1、分区：利用gdisk划分出一个swap分区，注意GUID设为8200</li>
+<li>2、格式化：利用[mkswap  设备文件名]命令格式化为swap分区</li>
+<li>3、启动：利用[swapon  设备文件名]命令启动swap分区</li>
+<li>4、查看：利用free或swapon  -s命令观察内存使用情况</li>
+<li>5、写入配置文件：&#x2F;etc&#x2F;fstab，挂载点写swap</li>
+</ul>
+<h5 id="用文件模拟创建swap分区"><a href="#用文件模拟创建swap分区" class="headerlink" title="用文件模拟创建swap分区"></a>用文件模拟创建swap分区</h5><p>利用回环设备，详见私房菜P254</p>
 
                 
               </div>
@@ -426,9 +480,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/" class="print-no-link">#Git</a>
-      
-        <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" class="print-no-link">#版本管理</a>
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
     </div>
   
@@ -440,8 +492,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>我的Git学习笔记</div>
-      <div>https://leo.zz.ac/posts/3059.html</div>
+      <div>Linux笔记-常用命令-磁盘与文件系统管理</div>
+      <div>https://leo.zz.ac/posts/d21e.html</div>
     </div>
     <div class="license-meta">
       
@@ -453,7 +505,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年1月5日</div>
+          <div>2025年9月20日</div>
         </div>
       
       
@@ -502,9 +554,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/d4a8.html" title="LeetCode刷题总结">
+                      <a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode刷题总结</span>
+                        <span class="hidden-mobile">Linux笔记-常用命令-文件与目录管理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -512,8 +564,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/3eeb.html" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/posts/ee18.html" title="Linux笔记-常用命令">
+                        <span class="hidden-mobile">Linux笔记-常用命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
