@@ -19,17 +19,17 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：基本命令与账户管理文件与目录管理、文件压缩磁盘与文件系统管理、文件系统备份Shell与文本格式化处理             磁盘与文件系统管理1. 文件系统管理 dumpe2fs    查看ext系列文件系统超级块信息语法：dumpe2fs">
+    <meta name="description" content="“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：常用命令-基本命令与账户管理常用命令-文件与目录管理、文件压缩常用命令-磁盘与文件系统管理、文件系统备份常用命令-Shell与文本格式化处理正则表达式Linux快捷键shell脚本语法             磁盘与文件系统管理1. 文件系统管理 dum">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux笔记-常用命令-磁盘与文件系统管理">
 <meta property="og:url" content="https://leo.zz.ac/posts/d21e.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：基本命令与账户管理文件与目录管理、文件压缩磁盘与文件系统管理、文件系统备份Shell与文本格式化处理             磁盘与文件系统管理1. 文件系统管理 dumpe2fs    查看ext系列文件系统超级块信息语法：dumpe2fs">
+<meta property="og:description" content="“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：常用命令-基本命令与账户管理常用命令-文件与目录管理、文件压缩常用命令-磁盘与文件系统管理、文件系统备份常用命令-Shell与文本格式化处理正则表达式Linux快捷键shell脚本语法             磁盘与文件系统管理1. 文件系统管理 dum">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://leo.zz.ac/img/1082.png">
 <meta property="og:image" content="https://leo.zz.ac/img/lsblk_blkid.png">
 <meta property="article:published_time" content="2025-09-20T15:10:50.000Z">
-<meta property="article:modified_time" content="2025-09-21T15:43:13.349Z">
+<meta property="article:modified_time" content="2025-09-21T16:48:34.188Z">
 <meta property="article:author" content="AquariusLeo">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -290,7 +290,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月21日 晚上
+                    本文最后更新于 2025年9月22日 凌晨
                   
                 
               </p>
@@ -299,7 +299,7 @@
               <div class="markdown-body">
                 
                 <div class="note note-info">
-            <p>“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：</p><ul><li><a href="/posts/ee18.html" title="Linux笔记-常用命令-基本命令与账户管理">基本命令与账户管理</a></li><li><a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">文件与目录管理、文件压缩</a></li><li><a href="/posts/d21e.html" title="Linux笔记-常用命令-磁盘与文件系统管理">磁盘与文件系统管理、文件系统备份</a></li><li><a href="/posts/7d95.html" title="Linux笔记-常用命令-Shell与文本处理">Shell与文本格式化处理</a></li></ul>
+            <p>“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：</p><ul><li><a href="/posts/ee18.html" title="Linux笔记-常用命令-基本命令与账户管理">常用命令-基本命令与账户管理</a></li><li><a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">常用命令-文件与目录管理、文件压缩</a></li><li><a href="/posts/d21e.html" title="Linux笔记-常用命令-磁盘与文件系统管理">常用命令-磁盘与文件系统管理、文件系统备份</a></li><li><a href="/posts/7d95.html" title="Linux笔记-常用命令-Shell与文本处理">常用命令-Shell与文本格式化处理</a></li><li><a href="/posts/789.html" title="Linux笔记-正则表达式">正则表达式</a></li><li><a href="/posts/9abd.html" title="Linux笔记-Linux快捷键">Linux快捷键</a></li><li><a href="/posts/827c.html" title="Linux笔记-shell脚本语法">shell脚本语法</a></li></ul>
           </div>
 
 <h1 id="磁盘与文件系统管理"><a href="#磁盘与文件系统管理" class="headerlink" title="磁盘与文件系统管理"></a>磁盘与文件系统管理</h1><h2 id="1-文件系统管理"><a href="#1-文件系统管理" class="headerlink" title="1. 文件系统管理 "></a>1. 文件系统管理 <i class="fa-solid fa-folder-tree"></i></h2><h4 id="dumpe2fs-查看ext系列文件系统超级块信息"><a href="#dumpe2fs-查看ext系列文件系统超级块信息" class="headerlink" title="dumpe2fs    查看ext系列文件系统超级块信息"></a>dumpe2fs    查看ext系列文件系统超级块信息</h4><p>语法：dumpe2fs  [-h]  设备文件名</p>
@@ -566,7 +566,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月21日</div>
+          <div>2025年9月22日</div>
         </div>
       
       

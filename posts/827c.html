@@ -19,15 +19,15 @@
   <meta name="author" content="AquariusLeo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="shell脚本语法脚本开头要写的内容 #!&#x2F;bin&#x2F;bash 或 #!&#x2F;bin&#x2F;bash 脚本的功能、作者、版本信息等 预先设置环境变量  变量相关规则 设置变量时用等号连接，如：myname&#x3D;vbird 引用变量的方式：${变量名} 或 $变量名（可能引起歧义的情况下尽量使用花括号） 输出变量内容：echo  ${变量名} 变量名不能以数字开头">
+    <meta name="description" content="“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：常用命令-基本命令与账户管理常用命令-文件与目录管理、文件压缩常用命令-磁盘与文件系统管理、文件系统备份常用命令-Shell与文本格式化处理正则表达式Linux快捷键shell脚本语法             shell脚本语法Shell脚本与Windo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux笔记-shell脚本语法">
 <meta property="og:url" content="https://leo.zz.ac/posts/827c.html">
 <meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
-<meta property="og:description" content="shell脚本语法脚本开头要写的内容 #!&#x2F;bin&#x2F;bash 或 #!&#x2F;bin&#x2F;bash 脚本的功能、作者、版本信息等 预先设置环境变量  变量相关规则 设置变量时用等号连接，如：myname&#x3D;vbird 引用变量的方式：${变量名} 或 $变量名（可能引起歧义的情况下尽量使用花括号） 输出变量内容：echo  ${变量名} 变量名不能以数字开头">
+<meta property="og:description" content="“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：常用命令-基本命令与账户管理常用命令-文件与目录管理、文件压缩常用命令-磁盘与文件系统管理、文件系统备份常用命令-Shell与文本格式化处理正则表达式Linux快捷键shell脚本语法             shell脚本语法Shell脚本与Windo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-06T16:46:55.111Z">
-<meta property="article:modified_time" content="2025-09-16T16:31:05.658Z">
+<meta property="article:modified_time" content="2025-09-21T16:48:05.801Z">
 <meta property="article:author" content="AquariusLeo">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Shell">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.4k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          10 分钟
+          12 分钟
         
       </span>
     
@@ -288,7 +288,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月17日 凌晨
+                    本文最后更新于 2025年9月22日 凌晨
                   
                 
               </p>
@@ -296,7 +296,13 @@
             
               <div class="markdown-body">
                 
-                <h1 id="shell脚本语法"><a href="#shell脚本语法" class="headerlink" title="shell脚本语法"></a>shell脚本语法</h1><h2 id="脚本开头要写的内容"><a href="#脚本开头要写的内容" class="headerlink" title="脚本开头要写的内容"></a>脚本开头要写的内容</h2><ul>
+                <div class="note note-info">
+            <p>“Linux笔记”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：</p><ul><li><a href="/posts/ee18.html" title="Linux笔记-常用命令-基本命令与账户管理">常用命令-基本命令与账户管理</a></li><li><a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">常用命令-文件与目录管理、文件压缩</a></li><li><a href="/posts/d21e.html" title="Linux笔记-常用命令-磁盘与文件系统管理">常用命令-磁盘与文件系统管理、文件系统备份</a></li><li><a href="/posts/7d95.html" title="Linux笔记-常用命令-Shell与文本处理">常用命令-Shell与文本格式化处理</a></li><li><a href="/posts/789.html" title="Linux笔记-正则表达式">正则表达式</a></li><li><a href="/posts/9abd.html" title="Linux笔记-Linux快捷键">Linux快捷键</a></li><li><a href="/posts/827c.html" title="Linux笔记-shell脚本语法">shell脚本语法</a></li></ul>
+          </div>
+
+<h1 id="shell脚本语法"><a href="#shell脚本语法" class="headerlink" title="shell脚本语法"></a>shell脚本语法</h1><p><strong>Shell脚本</strong>与Windows&#x2F;Dos下的批处理相似，也就是用各类shell命令预先放入到一个文本文件中，方便一次性执行。也能提供条件判断、循环、函数等语法功能。可用于便利地执行一系列复杂命令、周期性或重复性执行命令，能简化Linux日常操作、运维。</p>
+<p>编写Shell脚本，可以使用几乎所有的可在Linux命令行中执行的命令，以及 <a href="/posts/7d95.html" title="Linux笔记-常用命令-Shell与文本处理">Linux笔记-常用命令-Shell与文本处理</a> 中的知识（包括变量、通配符、特殊符号、数据流重定向、管道命令等）。<strong>速查表</strong>见 <a href="/posts/213f.html" title="Bash&#x2F;Shell&#x2F;Linux速查表">Bash&#x2F;Shell&#x2F;Linux速查表</a> 。</p>
+<h2 id="脚本开头要写的内容"><a href="#脚本开头要写的内容" class="headerlink" title="脚本开头要写的内容"></a>脚本开头要写的内容</h2><ul>
 <li>#!&#x2F;bin&#x2F;bash 或 #!&#x2F;bin&#x2F;bash</li>
 <li>脚本的功能、作者、版本信息等</li>
 <li>预先设置环境变量</li>
@@ -436,7 +442,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月17日</div>
+          <div>2025年9月22日</div>
         </div>
       
       
