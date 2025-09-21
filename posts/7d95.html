@@ -1,0 +1,1053 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AquariusLeo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：基本命令与账户管理文件与目录管理、文件压缩磁盘与文件系统管理、文件系统备份Shell与文本格式化处理             Bash shelltype    查询命令是否为shell的内置命令ulimit    限制用户可用的系统资源详见私">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux笔记-常用命令-Shell与文本处理">
+<meta property="og:url" content="https://leo.zz.ac/posts/7d95.html">
+<meta property="og:site_name" content="AquariusLeo&#39;s Blogs">
+<meta property="og:description" content="“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：基本命令与账户管理文件与目录管理、文件压缩磁盘与文件系统管理、文件系统备份Shell与文本格式化处理             Bash shelltype    查询命令是否为shell的内置命令ulimit    限制用户可用的系统资源详见私">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-21T06:10:00.000Z">
+<meta property="article:modified_time" content="2025-09-21T15:50:20.117Z">
+<meta property="article:author" content="AquariusLeo">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="Bash">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Linux笔记-常用命令-Shell与文本处理 - AquariusLeo&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"leo.zz.ac","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AquariusLeo&#39;s Blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux笔记-常用命令-Shell与文本处理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-21 14:10" pubdate>
+          2025年9月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux笔记-常用命令-Shell与文本处理</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年9月21日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-info">
+            <p>“Linux笔记-常用命令”系列博客是在阅读学习《鸟叔的LINUX私房菜》书籍时形成的思维导图，将其整理为笔记形式。包含以下部分：</p><ul><li><a href="/posts/ee18.html" title="Linux笔记-常用命令-基本命令与账户管理">基本命令与账户管理</a></li><li><a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">文件与目录管理、文件压缩</a></li><li><a href="/posts/d21e.html" title="Linux笔记-常用命令-磁盘与文件系统管理">磁盘与文件系统管理、文件系统备份</a></li><li><a href="/posts/7d95.html" title="Linux笔记-常用命令-Shell与文本处理">Shell与文本格式化处理</a></li></ul>
+          </div>
+
+<h2 id="Bash-shell"><a href="#Bash-shell" class="headerlink" title="Bash shell"></a>Bash shell</h2><h3 id="type-查询命令是否为shell的内置命令"><a href="#type-查询命令是否为shell的内置命令" class="headerlink" title="type    查询命令是否为shell的内置命令"></a>type    查询命令是否为shell的内置命令</h3><h3 id="ulimit-限制用户可用的系统资源"><a href="#ulimit-限制用户可用的系统资源" class="headerlink" title="ulimit    限制用户可用的系统资源"></a>ulimit    限制用户可用的系统资源</h3><p>详见私房菜P329</p>
+<h3 id="alias-设置命令别名"><a href="#alias-设置命令别名" class="headerlink" title=" alias    设置命令别名"></a><i class="fa-solid fa-star"></i> alias    设置命令别名</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><ul>
+<li>设置别名：alias  别名&#x3D;’命令’</li>
+<li>显示所有已设置的别名：alias  </li>
+<li>删除别名：unalias</li>
+</ul>
+<h3 id="history-命令历史"><a href="#history-命令历史" class="headerlink" title=" history    命令历史"></a><i class="fa-solid fa-clock-rotate-left"></i> history    命令历史</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><ul>
+<li>显示缓存中的历史：history</li>
+<li>列出最近的n条历史：history  n</li>
+<li>执行第n条历史：!n</li>
+<li>执行上一条命令：!!</li>
+<li>由最近历史向前查找以command开头的命令，并执行：!command</li>
+</ul>
+<h3 id="source-读取配置文件"><a href="#source-读取配置文件" class="headerlink" title=" source    读取配置文件"></a><i class="fa-solid fa-star"></i> source    读取配置文件</h3><h4 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h4><p>source  配置文件（也可用小数点 . 来代替source，如 <code>. ~/.bashrc</code>，中间有空格）</p>
+<p>为所有用户配置bash：在&#x2F;etc&#x2F;profile.d&#x2F;目录下建立*.sh文件，写入要配置的别名、变量、环境变量（要用export转为环境变量）、配置等</p>
+<p>为个别用户配置bash：修改~&#x2F;.bashrc文件</p>
+<p>登录时bash配置文件的读取顺序详见私房菜P339</p>
+<h3 id="一、变量相关"><a href="#一、变量相关" class="headerlink" title="一、变量相关"></a>一、变量相关</h3><h4 id="echo-输出变量"><a href="#echo-输出变量" class="headerlink" title=" echo    输出变量"></a><i class="fa-solid fa-star"></i> echo    输出变量</h4><h5 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h5><p>echo  $PATH 或 echo  ${PATH}</p>
+<p>echo  -e 可以使用反斜杠的特殊字符，如\n、\t</p>
+<h5 id="变量设置规则"><a href="#变量设置规则" class="headerlink" title="变量设置规则"></a>变量设置规则</h5><ul>
+<li>设置变量时用等号连接，如：myname&#x3D;vbird</li>
+<li>变量名不能以数字开头</li>
+<li>等号两边不能直接出现空格，如：myname&#x3D;vbird as是错的</li>
+<li>变量内容若有空格可用单引号或双引号，双引号中的特殊字符保留原本功能，单引号中的特殊字符仅为一般字符，如var&#x3D;”lang is $LANG”，$LANG替换为变量内容</li>
+<li>可用反斜杠\将特殊字符( [Enter]、$、\、空格、’ )转义为一般字符，如：myname&#x3D;vbird\  tsai</li>
+<li>若要扩增变量内容，可以如：PATH&#x3D;”$PATH”:&#x2F;home&#x2F;bin 或 PATH&#x3D;${PATH}:&#x2F;home&#x2F;bin</li>
+<li>若要获得额外的命令所提供的信息时，可用 $(命令) ，如：version&#x3D;$(uname -r)</li>
+<li>可使用unset取消变量，如：unset  myname</li>
+<li>变量的数值计算，用$((运算式))，如 total&#x3D;$((  ${firstnu}*${ secnu}  ))，但bash中数值计算最多只能到整数</li>
+</ul>
+<h4 id="env-显示所有环境变量"><a href="#env-显示所有环境变量" class="headerlink" title=" env    显示所有环境变量"></a><i class="fa-solid fa-star"></i> env    显示所有环境变量</h4><p>bash中一些特殊的变量，详见私房菜P322-324</p>
+<h4 id="set-显示所有环境变量与自定义变量"><a href="#set-显示所有环境变量与自定义变量" class="headerlink" title=" set    显示所有环境变量与自定义变量"></a><i class="fa-solid fa-star"></i> set    显示所有环境变量与自定义变量</h4><h4 id="export-自定义变量转成环境变量"><a href="#export-自定义变量转成环境变量" class="headerlink" title=" export    自定义变量转成环境变量"></a><i class="fa-solid fa-star"></i> export    自定义变量转成环境变量</h4><h5 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h5><ul>
+<li><p>export  myname</p>
+</li>
+<li><p>显示所有环境变量：export</p>
+</li>
+</ul>
+<blockquote>
+<p>子进程仅会继承父进程的环境变量，不会继承父进程的自定义变量</p>
+</blockquote>
+<h4 id="locale-显示当前的语系变量的设置"><a href="#locale-显示当前的语系变量的设置" class="headerlink" title="locale    显示当前的语系变量的设置"></a>locale    显示当前的语系变量的设置</h4><ul>
+<li>locale  -a 显示系统支持的所有语系</li>
+<li>出现乱码问题，通常需要修改语系，只需修改LANG和LC_ALL这两个环境变量，其他语系变量就会被覆盖，例：LANG&#x3D;en_US.UTF-8 ； export  LC_ALL&#x3D;en_US.UTF-8</li>
+<li>常用语系：中文：zh_CN.GB2312、zh_CN.UTF-8、英文：en_US.UTF-8</li>
+</ul>
+<h4 id="read-读取来自键盘输入的变量"><a href="#read-读取来自键盘输入的变量" class="headerlink" title="read   读取来自键盘输入的变量"></a>read   读取来自键盘输入的变量</h4><h5 id="语法：-2"><a href="#语法：-2" class="headerlink" title="语法："></a>语法：</h5><p>read  [-pt]  变量</p>
+<h5 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-p：后接提示字符</li>
+<li>-t：后接等待的秒数</li>
+</ul>
+<h4 id="declare-声明变量的类型"><a href="#declare-声明变量的类型" class="headerlink" title=" declare    声明变量的类型"></a><i class="fa-solid fa-star"></i> declare    声明变量的类型</h4><h5 id="语法：-3"><a href="#语法：-3" class="headerlink" title="语法："></a>语法：</h5><p>declare  [-aixr]  变量</p>
+<h5 id="选项-1"><a href="#选项-1" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-a：声明为数组类型</li>
+<li>-i：声明为整数类型</li>
+<li>-x：声明为环境变量</li>
+<li>-r：设置为只读类型，不可修改和unset</li>
+</ul>
+<p>环境变量转为自定义变量：declare  +x  变量</p>
+<p>与typeset用法相同</p>
+<h3 id="二、-通配符"><a href="#二、-通配符" class="headerlink" title="二、 通配符"></a>二、<i class="fa-solid fa-quote-right"></i> 通配符</h3><ul>
+<li>*：匹配任意0到无穷多个字符</li>
+<li>？：匹配1个字符</li>
+<li>[ ]：匹配指定字符范围内的任意个字符，如[abcd]</li>
+<li>[  -  ]：匹配在编码顺序内的所有字符，如[0-9]</li>
+<li>[^   ]：表示反向选择，如[^abc]表示非a、b、c的其他字符</li>
+</ul>
+<h3 id="三、-特殊符号"><a href="#三、-特殊符号" class="headerlink" title="三、 特殊符号"></a>三、<i class="fa-solid fa-quote-right"></i> 特殊符号</h3><blockquote>
+<p> 通配符与特殊符号也可在shell脚本中使用</p>
+</blockquote>
+<ul>
+<li>#：注释符号，shell脚本中同</li>
+<li>\：转义符，将通配符或特殊字符转为一般字符</li>
+<li>| ：管道符</li>
+<li>；：连续命令执行符</li>
+<li>&amp;&amp;与 || ：具有相关性的命令执行的判断</li>
+<li>~：用户家目录</li>
+<li>$：变量前导符</li>
+<li>&amp;：任务管理</li>
+<li>！：逻辑运算的非</li>
+<li>&#x2F;  ：路径分隔符号</li>
+<li>&gt;与&gt;&gt;与&lt;与&lt;&lt;：数据流重定向</li>
+<li>‘’ ：单引号，其中的特殊字符仅为一般字符，如$PATH不会进行替换</li>
+<li>“”：双引号，其中的特殊字符保留原本功能，如$PATH会进行替换，若单纯要输入$要用转义符</li>
+<li>( )：子shell的起始与结束</li>
+<li>$()：引用额外命令提供的信息进行替换</li>
+<li>{ }：用于一串命令执行时，{}中的命令会在当前shell中执行，也可以用于变量变形与替换</li>
+</ul>
+<h3 id="四、-数据流重定向"><a href="#四、-数据流重定向" class="headerlink" title="四、 数据流重定向"></a>四、<i class="fa-solid fa-arrows-split-up-and-left"></i> 数据流重定向</h3><ul>
+<li>&gt;：覆盖地重定向标准输出到文件</li>
+<li>&gt;&gt;：累加地重定向标准输出到文件</li>
+<li>2&gt;：覆盖地重定向标准错误输出到文件</li>
+<li>2&gt;&gt;：累加地重定向标准错误输出到文件</li>
+<li>&lt;：由键盘输入的数据，改由文件输入</li>
+<li>&lt;&lt;：设置结束的输入字符</li>
+<li>&#x2F;dev&#x2F;null：黑洞设备，丢弃任何导向这个设备的数据</li>
+<li>若要将标准输出与错误输出写到同一个文件，可以用  &gt;  list   2&gt;&amp;1</li>
+</ul>
+<h3 id="五、-命令执行的判断依据"><a href="#五、-命令执行的判断依据" class="headerlink" title="五、 命令执行的判断依据"></a>五、<i class="fa-solid fa-list-check"></i> 命令执行的判断依据</h3><ul>
+<li><p>cmd1 ; cmd2：不考虑相关性，连续地执行命令</p>
+</li>
+<li><p>cmd1 &amp;&amp; cmd2：若cmd1执行完毕且正确，则执行cmd2，反之不执行</p>
+<blockquote>
+<p>依据前一个命令的 $? 变量返回值判定，若$?&#x3D;0，则执行cmd2，若$?≠0，则不执行。</p>
+<p>$?：上一个命令返回值，当命令成功执行时返回0，否则返回非0值。</p>
+</blockquote>
+</li>
+<li><p>cmd1   ||   cmd2：若cmd1执行完毕且错误，则执行cmd2，反之不执行</p>
+</li>
+</ul>
+<p>例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls /tmp/abc || mkdir /tmp/abc &amp;&amp; touch /tmp/abc/hehe<br><br>ls /tmp/abc $$ echo &quot;exist&quot; || echo &quot;not exist&quot;   <br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="六、管道命令"><a href="#六、管道命令" class="headerlink" title="六、管道命令"></a>六、管道命令</h3><p><strong><u>管道命令</u><strong>用竖线 | 分隔，</strong>将前一个命令的stdout作为stdin输入到下一个命令</strong>。</p>
+<p>支持管道的命令指<strong>既可以从文件读取，也可以从标准输入读取</strong>：<u>cat</u>、<u>less</u>、more、<u>head</u>、<u>tail</u>、cut、<u>grep</u>、<u>sort</u>、<u>wc</u>、uniq、tee、tr、col、join、paste、expand、split、<u>xargs</u>、<u>sed</u>、<u>awk</u></p>
+<h4 id="cut-以行为单位，切出数据的某一段，用于具有格式的数据，如last的输出"><a href="#cut-以行为单位，切出数据的某一段，用于具有格式的数据，如last的输出" class="headerlink" title="cut    以行为单位，切出数据的某一段，用于具有格式的数据，如last的输出"></a>cut    以行为单位，切出数据的某一段，用于具有格式的数据，如last的输出</h4><h5 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h5><ul>
+<li>cut  -d  ‘分割字符’  -f  n  [filename]</li>
+<li>cut  -c  字符区间  [filename]</li>
+</ul>
+<h5 id="选项-2"><a href="#选项-2" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-d：后接分割字符</li>
+<li>-f：用-d的分割字符划分为数段，取第n段</li>
+<li>-c：以字符为单位取出固定区间</li>
+</ul>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>echo  ${PATH}  |  cut  -d  ‘:’  -f  5</li>
+<li>last  |  cut  -c  1-9</li>
+</ul>
+<h4 id="grep-查找匹配的行并打印，支持正则表达式"><a href="#grep-查找匹配的行并打印，支持正则表达式" class="headerlink" title=" grep    查找匹配的行并打印，支持正则表达式"></a><i class="fa-solid fa-star"></i> grep    查找匹配的行并打印，支持正则表达式</h4><blockquote>
+<p>默认就支持基础正则表达式</p>
+</blockquote>
+<h5 id="语法：-4"><a href="#语法：-4" class="headerlink" title="语法："></a>语法：</h5><p>grep  [-ABcinv]  ‘string’  [filename]</p>
+<h5 id="选项-3"><a href="#选项-3" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-An：后接数字，除了找到string的行，后面n行也列出来</li>
+<li>-Bn：后接数字，除了找到string的行，前面n行也列出来</li>
+<li>-c：计算找到字符的行数</li>
+<li>-i：忽略大小写的不同</li>
+<li>-n：输出行号</li>
+<li>-v：反向选择，选取没有“string”的行</li>
+<li>-E：支持拓展正则表达式（等价于egrep）</li>
+</ul>
+<h5 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>last  |  grep  ‘root’  |  cut  -d  ‘ ‘  -f 1</li>
+<li>last  |  grep  -v  ‘root’</li>
+</ul>
+<h4 id="sort-以行为单位进行排序"><a href="#sort-以行为单位进行排序" class="headerlink" title=" sort    以行为单位进行排序"></a><i class="fa-solid fa-star"></i> sort    以行为单位进行排序</h4><h5 id="语法：-5"><a href="#语法：-5" class="headerlink" title="语法："></a>语法：</h5><p>sort  [-ntk]  [filename]</p>
+<h5 id="选项-4"><a href="#选项-4" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-n：以数字进行排序（默认以字符排序）</li>
+<li>-t：后接分隔字符</li>
+<li>-k  num：用-t的分割字符划分为数段，用第num段进行排序</li>
+</ul>
+<h5 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>cat  &#x2F;etc&#x2F;passwd  |  sort  -t  ‘:’  -k  3  -n</li>
+</ul>
+<h4 id="uniq-对于重复的行，仅保留一行"><a href="#uniq-对于重复的行，仅保留一行" class="headerlink" title="uniq    对于重复的行，仅保留一行"></a>uniq    对于重复的行，仅保留一行</h4><h5 id="语法：-6"><a href="#语法：-6" class="headerlink" title="语法："></a>语法：</h5><p>uniq  [-ic]</p>
+<h5 id="选项-5"><a href="#选项-5" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-i：忽略大小写的不同</li>
+<li>-c：进行计数</li>
+</ul>
+<h5 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>last  |  cut  -d  ‘ ‘  -f  1  |  sort  |  uniq</li>
+<li>last  |  cut  -d  ‘ ‘  -f  1  |  sort  |  uniq  -c</li>
+</ul>
+<h4 id="wc-计算行数、字符数等"><a href="#wc-计算行数、字符数等" class="headerlink" title=" wc    计算行数、字符数等"></a><i class="fa-solid fa-star"></i> wc    计算行数、字符数等</h4><h5 id="语法：-7"><a href="#语法：-7" class="headerlink" title="语法："></a>语法：</h5><p>wc  [-lwm]  [filename]</p>
+<h5 id="选项-6"><a href="#选项-6" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-l：计算行数</li>
+<li>-w：计算单词数</li>
+<li>-m：计算字符数</li>
+</ul>
+<h5 id="例子-4"><a href="#例子-4" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>last  |  grep  ‘root’  |  wc -l</li>
+</ul>
+<h4 id="tee-双向重定向，将数据同时分流到文件与屏幕"><a href="#tee-双向重定向，将数据同时分流到文件与屏幕" class="headerlink" title="tee    双向重定向，将数据同时分流到文件与屏幕"></a>tee    双向重定向，将数据同时分流到文件与屏幕</h4><h5 id="语法：-8"><a href="#语法：-8" class="headerlink" title="语法："></a>语法：</h5><p>tee  [-a]  file</p>
+<h5 id="选项-7"><a href="#选项-7" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-a：以累加的形式写入文件（默认覆盖）</li>
+</ul>
+<h5 id="例子-5"><a href="#例子-5" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>last  |  tee  last.list  |  cut  -d ‘ ‘  -f 1</li>
+</ul>
+<p>用于在管道中保存一份中间数据的缓存</p>
+<h4 id="tr-删除或替换字符"><a href="#tr-删除或替换字符" class="headerlink" title="tr    删除或替换字符"></a>tr    删除或替换字符</h4><h5 id="语法：-9"><a href="#语法：-9" class="headerlink" title="语法："></a>语法：</h5><p>tr  [-d]  ‘char1’  ‘char2’</p>
+<h5 id="选项-8"><a href="#选项-8" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-d：删除char1字符，若无-d选项则将char1替换为char2</li>
+</ul>
+<h5 id="例子-6"><a href="#例子-6" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>last  |  tr  ‘[a-z]’  ‘[A-Z]’</li>
+<li>cat  &#x2F;etc&#x2F;passwd  |  tr  -d  ‘:’</li>
+</ul>
+<h4 id="col-将tab键替换为对等的空格键"><a href="#col-将tab键替换为对等的空格键" class="headerlink" title="col    将tab键替换为对等的空格键"></a>col    将tab键替换为对等的空格键</h4><h5 id="语法：-10"><a href="#语法：-10" class="headerlink" title="语法："></a>语法：</h5><p>col  -x</p>
+<h5 id="例子-7"><a href="#例子-7" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>cat  &#x2F;etc&#x2F;man_db.conf  |  col  -x</li>
+</ul>
+<p>相同作用expand、unexpand，详见私房菜P357</p>
+<h4 id="join-将两个文件中，有相同数据的那一行合并"><a href="#join-将两个文件中，有相同数据的那一行合并" class="headerlink" title="join    将两个文件中，有相同数据的那一行合并"></a>join    将两个文件中，有相同数据的那一行合并</h4><p>详见私房菜P356</p>
+<h4 id="paste-直接将两个文件的对应两行连接起来，以Tab键隔开"><a href="#paste-直接将两个文件的对应两行连接起来，以Tab键隔开" class="headerlink" title="paste    直接将两个文件的对应两行连接起来，以Tab键隔开"></a>paste    直接将两个文件的对应两行连接起来，以Tab键隔开</h4><h5 id="语法：-11"><a href="#语法：-11" class="headerlink" title="语法："></a>语法：</h5><p>paste  [-d]  file1  file2</p>
+<h5 id="选项-9"><a href="#选项-9" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-d：后接分隔符，默认为Tab键</li>
+</ul>
+<h5 id="例子-8"><a href="#例子-8" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>paste  &#x2F;etc&#x2F;passwd   &#x2F;etc&#x2F;shadow</li>
+<li>cat  &#x2F;etc&#x2F;group  |  paste  &#x2F;etc&#x2F;passwd  &#x2F;etc&#x2F;shadow  -</li>
+</ul>
+<h4 id="split-依据文件大小或行数将大文件划分为小文件"><a href="#split-依据文件大小或行数将大文件划分为小文件" class="headerlink" title="split    依据文件大小或行数将大文件划分为小文件"></a>split    依据文件大小或行数将大文件划分为小文件</h4><h5 id="语法：-12"><a href="#语法：-12" class="headerlink" title="语法："></a>语法：</h5><p>split  [-bl]  file  前缀名</p>
+<h5 id="选项-10"><a href="#选项-10" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-b：以大小划分，后接文件大小</li>
+<li>-l：以行数划分，后接行数</li>
+<li>前缀名：小文件的前缀名，以<em><strong>aa、</strong></em>ab、***ac等命名小文件</li>
+</ul>
+<h5 id="例子-9"><a href="#例子-9" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>划分为servicesaa、servicesab等的300k的小文件：split  -b  300k  &#x2F;etc&#x2F;services  services</li>
+<li>将小文件合并：cat  services*  &gt;&gt;  servicesback</li>
+<li>将ls的输出信息每10行记录为一个文件：ls  -al  &#x2F;etc  |  split  -l  10  -  lsetc</li>
+</ul>
+<blockquote>
+<p>减号放在文件名的位置，可以代表此处文件由stdin输入或由stdout输出，如：</p>
+<p>tar  -cv  -f  -  &#x2F;home  |  tar  -xv  -f  -  -C  &#x2F;tmp&#x2F;homeback</p>
+</blockquote>
+<h4 id="xargs-从stdin解析出参数"><a href="#xargs-从stdin解析出参数" class="headerlink" title=" xargs    从stdin解析出参数"></a><i class="fa-solid fa-star"></i> xargs    从stdin解析出参数</h4><h5 id="用途："><a href="#用途：" class="headerlink" title="用途："></a>用途：</h5><p>从stdin解析出参数。针对某些不支持管道（不支持stdin输入）的命令，通过xargs从stdin获得参数，从而可以用于管道</p>
+<h5 id="语法：-13"><a href="#语法：-13" class="headerlink" title="语法："></a>语法：</h5><p>xargs  [-0epn]  command</p>
+<h5 id="选项-11"><a href="#选项-11" class="headerlink" title="选项"></a>选项</h5><ul>
+<li>-0：如果输入的stdin含有特殊字符，例如 &#96; 、\、空格等字符时，这个-0参数可以将它还原成一般字符，这个参数可以用于特殊状态</li>
+<li>-e：这是EOF (end of file) 的意思，后面可以接一个字符，当xargs分析到这个字符时，就会停止工作</li>
+<li>-p：在执行每个命令时，都会询问使用者</li>
+<li>-n：后面接次数，每次command命令执行时，要使用几个参数</li>
+</ul>
+<h5 id="例子-10"><a href="#例子-10" class="headerlink" title="例子"></a>例子</h5><ul>
+<li>cut -d ‘:’ -f 1 &#x2F;etc&#x2F;passwd  |  head -n 3  |  xargs  -n 1  id  （每次丢一个参数给id命令来执行）</li>
+<li>cut -d ‘:’ -f 1 &#x2F;etc&#x2F;passwd  |  head -n 3  |  xargs  -e’sync’  -n 1  id</li>
+<li>find  &#x2F;usr&#x2F;sbin -perm  &#x2F;7000  |  xargs  ls -l  （ls不支持stdin输入，使用xargs后由管道传来的stdin解析出参数，填入ls  -l后面）</li>
+<li>find  &#x2F;home  -name  “*.java”  |  xargs  wc  -l  （将管道传来的stdout（find找到的文件名列表）解析为参数（一个个文件名）填入wc -l后面，wc去读java文件。wc会被执行很多遍。此条命令的作用是查询&#x2F;home下每个java文件各自的行数）</li>
+<li>find  &#x2F;home  -name  “*.java”  |  wc  -l  （将管道传来的stdout直接作为标准输入（find找到的文件名列表）输入到wc -l中。wc仅执行一遍。此条命令的作用是查询&#x2F;home下java文件的数量）</li>
+<li>find  &#x2F;home  -name  “*.java”  |  xargs  grep  ‘123’</li>
+</ul>
+<h2 id="文本格式化处理"><a href="#文本格式化处理" class="headerlink" title="文本格式化处理"></a>文本格式化处理</h2><div class="note note-danger">
+            <p>grep、sed、awk并称Linux三剑客</p>
+          </div>
+
+<h3 id="grep-查找匹配的行并打印，支持正则表达式，支持文件读取和标准输入"><a href="#grep-查找匹配的行并打印，支持正则表达式，支持文件读取和标准输入" class="headerlink" title=" grep     查找匹配的行并打印，支持正则表达式，支持文件读取和标准输入"></a><i class="fa-solid fa-star"></i> grep     查找匹配的行并打印，支持正则表达式，支持文件读取和标准输入</h3><p>用法见上文</p>
+<h3 id="sed-文本编辑工具，可进行替换、删除、新增、选定等，支持RE，支持文件读取和标准输入"><a href="#sed-文本编辑工具，可进行替换、删除、新增、选定等，支持RE，支持文件读取和标准输入" class="headerlink" title=" sed    文本编辑工具，可进行替换、删除、新增、选定等，支持RE，支持文件读取和标准输入"></a><i class="fa-solid fa-star"></i> sed    文本编辑工具，可进行替换、删除、新增、选定等，支持RE，支持文件读取和标准输入</h3><h4 id="语法：-14"><a href="#语法：-14" class="headerlink" title="语法："></a>语法：</h4><p>sed  [-nfri]  ‘操作’  [filename]</p>
+<h4 id="选项-12"><a href="#选项-12" class="headerlink" title="选项"></a>选项</h4><ul>
+<li>-n：使用安静模式，仅显示出被sed处理过的那一行，而非显示文件的所有行</li>
+<li>-f：后接scriptfile，执行scriptfile中的命令</li>
+<li>-r：使用拓展正则表达式</li>
+<li>-i：直接修改原文件内容，而非屏幕输出</li>
+</ul>
+<h4 id="‘操作’-的格式：定位1-，定位2-编辑命令-内容"><a href="#‘操作’-的格式：定位1-，定位2-编辑命令-内容" class="headerlink" title="‘操作’ 的格式：定位1[，定位2]编辑命令  [内容]"></a>‘操作’ 的格式：定位1[，定位2]编辑命令  [内容]</h4><h4 id="定位方式"><a href="#定位方式" class="headerlink" title="定位方式"></a>定位方式</h4><ul>
+<li>行号</li>
+<li>&#x2F;正则表达式&#x2F;</li>
+</ul>
+<h4 id="编辑命令"><a href="#编辑命令" class="headerlink" title="编辑命令"></a>编辑命令</h4><ul>
+<li>a：新增，在指定行的下一行添加</li>
+<li>c：替换，替换n1，n2之间的行</li>
+<li>d：删除，通常后面不接内容</li>
+<li>i：插入，在指定行的上一行添加</li>
+<li>p：打印，通常与sed -n一起使用</li>
+<li>s：查找替换，用法与vim相同， n1,n2s&#x2F;word1&#x2F;word2&#x2F;g 或 s&#x2F;word1&#x2F;word2&#x2F;g</li>
+</ul>
+<h4 id="例子-11"><a href="#例子-11" class="headerlink" title="例子"></a>例子</h4><ul>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘2a drink’   在第2行后（即第3行）插入一行drink</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘2,5c No 2-5 number’  替换第2~5行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘2,5d’   删除第2~5行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘2,$d’   删除第2到最后一行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  -n  ‘5,7p’   打印第5~7行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  -n  ‘&#x2F;MAN&#x2F;p’   打印匹配MAN的行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  -n  ‘2,&#x2F;MAN&#x2F;p’   打印从第2行到第一次匹配MAN的行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘s&#x2F;^#.*$&#x2F;&#x2F;g’  把以#开头的行替换为空行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘1,3s&#x2F;^&#x2F;#&#x2F;‘   在1~3行行首加上#，用于注释某些行</li>
+<li>nl  &#x2F;etc&#x2F;passwd  |  sed  ‘2a Drink tea or\</li>
+<li>&gt; drink beer?’       反斜杠加回车可以插入多行数据</li>
+</ul>
+<h3 id="awk-将文件的每一行分为数个字段来处理，常用于格式化输出。支持RE，支持文件读取和标准输入"><a href="#awk-将文件的每一行分为数个字段来处理，常用于格式化输出。支持RE，支持文件读取和标准输入" class="headerlink" title=" awk    将文件的每一行分为数个字段来处理，常用于格式化输出。支持RE，支持文件读取和标准输入"></a><i class="fa-solid fa-star"></i> awk    将文件的每一行分为数个字段来处理，常用于格式化输出。支持RE，支持文件读取和标准输入</h3><h4 id="语法：-15"><a href="#语法：-15" class="headerlink" title="语法："></a>语法：</h4><p>awk  ‘条件{操作}  条件{操作}…’  [filename]</p>
+<p>awk每次读入一行，将一行的数据分段放入$1、$2等变量中，根据条件判断是否要执行后面的操作。再读取下一行，重复上面步骤。</p>
+<p>每一行的每个字段有其变量名，为$1、$2等。$0代表一整列数据。特殊变量：NF：每一行拥有的字段数，NR：目前处理的是第几行，FS：目前的分割字符，默认是空格。设置分割字符：-F’:’</p>
+<h4 id="例子-12"><a href="#例子-12" class="headerlink" title="例子"></a>例子</h4><ul>
+<li>last  -n 5  |  awk  ‘{print  $1  “\t “  $3}’   列出第1和3字段，并以Tab分割（注意单引号中出现的非变量的文字部分要用双引号括起来）</li>
+<li>last  -n 5  |  awk  ‘{print  $1  “\t lines: “  NR  “\t columns: “  NF}’</li>
+<li>last  -n 5  |  awk  ‘BEGIN{FS&#x3D;”:”}  $3&lt;10{print  $1  “\t “  $3}’   以冒号为分隔符，当第三字段大于10时打印第1和3字段</li>
+<li>cat  pay.txt  |  awk  ‘NR&#x3D;&#x3D;1{printf   “%10s %10s %10s %10s %10s\n”,$1,$2,$3,$4,”Total”} \</li>
+<li>NR&gt;&#x3D;2{total&#x3D;$2+$3+$4; printf  “%10s %10d %10d %10d %10.2f\n”,$1,$2,$3,$4,total}’</li>
+</ul>
+<h3 id="printf-格式化输出"><a href="#printf-格式化输出" class="headerlink" title="printf    格式化输出"></a>printf    格式化输出</h3><h4 id="语法：-16"><a href="#语法：-16" class="headerlink" title="语法："></a>语法：</h4><p>printf  ‘格式字符串’  实际内容</p>
+<p>printf不能直接读取文件且不支持管道，要用$( )读取文件提供给printf</p>
+<p>用法与C语言printf类似，s代表字符串，i代表整数，d代表十进制数，f代表浮点数</p>
+<h4 id="例子-13"><a href="#例子-13" class="headerlink" title="例子"></a>例子</h4><ul>
+<li>printf  ‘%s\t %s\t %s\t %s\t %s\t \n’  $(cat  printf.txt)</li>
+<li>printf  ‘%10s %5i %5i %5i %8.2f \n’  $(cat  printf.txt  |  grep  -v  ‘Name’)</li>
+<li>printf  ‘\x45\n’   输出ACSII码值为十六进制的数值0x45（十进制69）的字符</li>
+</ul>
+<h3 id="diff-对比纯文本文件"><a href="#diff-对比纯文本文件" class="headerlink" title="diff    对比纯文本文件"></a>diff    对比纯文本文件</h3><h4 id="语法：-17"><a href="#语法：-17" class="headerlink" title="语法："></a>语法：</h4><p>diff  [-bBi]  fromfile  tofile</p>
+<h4 id="选项-13"><a href="#选项-13" class="headerlink" title="选项"></a>选项</h4><ul>
+<li>-b：忽略一行中多个空白的区别</li>
+<li>-B：忽略空白行的差别</li>
+<li>-i：忽略大小写的差别</li>
+<li>fromfile：原始文件</li>
+<li>tofile：目标文件</li>
+</ul>
+<h3 id="cmp-利用字节单位对比"><a href="#cmp-利用字节单位对比" class="headerlink" title="cmp    利用字节单位对比"></a>cmp    利用字节单位对比</h3><p>详见私房菜P382</p>
+<h3 id="patch-利用diff生成的补丁文件更新旧文件"><a href="#patch-利用diff生成的补丁文件更新旧文件" class="headerlink" title="patch    利用diff生成的补丁文件更新旧文件"></a>patch    利用diff生成的补丁文件更新旧文件</h3><p>详见私房菜P383</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Shell/" class="print-no-link">#Shell</a>
+      
+        <a href="/tags/Bash/" class="print-no-link">#Bash</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux笔记-常用命令-Shell与文本处理</div>
+      <div>https://leo.zz.ac/posts/7d95.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AquariusLeo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年9月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/2b60.html" title="Linux笔记-常用命令-文件与目录管理">
+                        <span class="hidden-mobile">Linux笔记-常用命令-文件与目录管理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://chimerical-moxie-8dfa59.netlify.app/.netlify/functions/comment","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"reaction":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <script src="https://kit.fontawesome.com/5cd5972204.js" crossorigin="anonymous"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
