@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://leo.zz.ac/img/1082.png">
 <meta property="og:image" content="https://leo.zz.ac/img/lsblk_blkid.png">
 <meta property="article:published_time" content="2025-09-20T15:10:50.000Z">
-<meta property="article:modified_time" content="2025-09-21T16:48:34.188Z">
+<meta property="article:modified_time" content="2025-10-01T06:15:52.617Z">
 <meta property="article:author" content="AquariusLeo">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.7k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          26 分钟
+          31 分钟
         
       </span>
     
@@ -290,7 +290,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月22日 凌晨
+                    本文最后更新于 2025年10月1日 下午
                   
                 
               </p>
@@ -503,6 +503,63 @@
 <div class="note note-info">
             <h3 id="几种与备份相关的命令比较"><a href="#几种与备份相关的命令比较" class="headerlink" title="几种与备份相关的命令比较"></a>几种与备份相关的命令比较</h3><ul><li>tar：常用于目录的备份，可以进行打包及压缩操作</li><li>xfsdump：常用于整个文件系统的备份，并可以增量备份</li><li>dd：常用于整个磁盘或设备的备份，因为dd是按块读取，直接读取扇区，可以完整的备份磁盘整个扇区表面的数据（包括启动扇区、超级块、元数据）。新的分区不需要格式化，可以直接拷贝过去。</li><li>cpio：拷贝to&#x2F;from cpio格式的文件，可以备份任何文件，包括设备文件，但需要配合find命令，详见私房菜P284</li></ul>
           </div>
+
+
+
+<h1 id="逻辑卷管理器LVM"><a href="#逻辑卷管理器LVM" class="headerlink" title="逻辑卷管理器LVM"></a>逻辑卷管理器LVM</h1><p>LVM的全名是Logical Volume Manager，重点在于<strong>可以弹性地调整文件系统的容量</strong>，整合多个物理分区，让这些分区看起来像一个磁盘。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li>物理卷（PV）：用gdisk把实际的磁盘物理分区的标识符修改为8e00，再经过pvcreate转换成LVM的物理卷</li>
+<li>卷组（VG）：<strong>将许多个PV整合一个完整的虚拟的LVM大磁盘</strong></li>
+<li>物理拓展块（PE）：LVM存储数据的最小单位，默认使用4MB的数据块</li>
+<li>逻辑卷（LV）：<strong>一个完整的VG被切分成多个LV</strong>，成为可被格式化为文件系统、类似于分区的东西</li>
+</ul>
+<h2 id="创建新LV的流程"><a href="#创建新LV的流程" class="headerlink" title="创建新LV的流程"></a>创建新LV的流程</h2><h4 id="0-Disk阶段"><a href="#0-Disk阶段" class="headerlink" title="0.Disk阶段"></a>0.Disk阶段</h4><p>使用gdisk命令将新磁盘划分出新分区， 将分区类型的code修改为8e00。</p>
+<h4 id="1-PV阶段"><a href="#1-PV阶段" class="headerlink" title="1.PV阶段"></a>1.PV阶段</h4><ul>
+<li>pvcreate：将物理分区建立为PV</li>
+<li>pvscan：查找目前系统中任何具有PV状态的物理分区</li>
+<li>pvdisplay：显示目前系统上的某个PV的状态</li>
+<li>pvremove：将PV属性删除，让该分区不具有PV属性</li>
+</ul>
+<h4 id="2-VG阶段"><a href="#2-VG阶段" class="headerlink" title="2.VG阶段"></a>2.VG阶段</h4><ul>
+<li>vgcreate：建立新的VG。格式：<code>vgcreate VG名称 PV名称</code></li>
+<li>vgscan：查找目前系统上的VG</li>
+<li>vgdisplay：显示某个VG的状态</li>
+<li>vgextend：在VG内增加额外的PV。格式：<code>vgextend VG名称 PV名称</code></li>
+<li>vgreduce：在VG内删除PV</li>
+<li>vgchange：设置VG是否启动（active）</li>
+<li>vgremove：删除一个VG</li>
+</ul>
+<h4 id="3-LV阶段"><a href="#3-LV阶段" class="headerlink" title="3.LV阶段"></a>3.LV阶段</h4><ul>
+<li>lvcreate：建立新的LV。格式：<code>lvcreate [-L 容量] [-n LV名称] VG名称</code></li>
+<li>lvscan：查找系统上的LV</li>
+<li>lvdisplay：显示某个LV的状态</li>
+<li>lvextend：在LV内增加容量</li>
+<li>lvreduce：在LV内减少容量</li>
+<li>lvremove：删除一个LV</li>
+<li>lvresize：对LV容量大小进行调整</li>
+</ul>
+<h4 id="4-文件系统阶段"><a href="#4-文件系统阶段" class="headerlink" title="4.文件系统阶段"></a>4.文件系统阶段</h4><p>mkfs.xfs –&gt; mkdir –&gt; mount</p>
+<h2 id="拓展LV空间的流程"><a href="#拓展LV空间的流程" class="headerlink" title="拓展LV空间的流程"></a>拓展LV空间的流程</h2><p>若某个单独的逻辑卷对应的文件系统 容量不足，可用以下步骤拓展：</p>
+<ol>
+<li>加磁盘&#x2F;拓展磁盘容量，gdisk创建新的物理分区，partprobe保存</li>
+<li>pvcreate为该物理分区加上PV属性：<code>sudo pvcreate /dev/sda4</code></li>
+<li>vgextend将该PV添加到现有的VG：<code>sudo vgextend ubuntu-vg /dev/sda4</code></li>
+<li>lvextend将VG的所有剩余容量加入到现有的LV中：<code>sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv</code>（注意此处要写完整路径）</li>
+<li>放大文件系统：<ol>
+<li>ext4系统：<code>sudo resize2fs /dev/ubuntu-vg/ubuntu-lv</code></li>
+<li>xfs系统：<code>sudo xfs_growfs /dev/ubuntu-vg/ubuntu-lv</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="删除LVM"><a href="#删除LVM" class="headerlink" title="删除LVM"></a>删除LVM</h2><ol>
+<li>卸载系统上的LVM文件系统：umount</li>
+<li>lvremove删除所有的LV</li>
+<li>vgchange -a -n VGname  让VG不再具有active属性</li>
+<li>vgremove删除这个VG</li>
+<li>pvremove删除所有的PV</li>
+<li>gdisk修改标识符为83，此时物理分区就不具有PV属性，可以用作他用</li>
+</ol>
+
                 
               </div>
             
@@ -566,7 +623,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月22日</div>
+          <div>2025年10月1日</div>
         </div>
       
       
